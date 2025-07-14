@@ -1,46 +1,158 @@
---[[ 🔔 TETRA4 HUB UI COMPLETO - REDZHUB STYLE Desenvolvido por TETRA4 ]]
+local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
 
-local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/Library-ui/refs/heads/main/Redzhubui"))()
+local Window = redzlib:MakeWindow({
+    Title = "Tetra4 🛠️",
+    SubTitle = "by Renan",
+    SaveFolder = "Tetra4_Settings"
+})
 
-local Players = game:GetService("Players") local player = Players.LocalPlayer
+-- Aba Player
+local TabPlayer = Window:MakeTab({"Player", "4483362458"}) -- ícone pode ser ID ou string
 
-local function getHumanoid() local character = player.Character or player.CharacterAdded:Wait() return character:WaitForChild("Humanoid") end
+local velocidadeAtiva = false
+local velocidadeValor = 16
 
-local Window = redzlib:MakeWindow({ Title = "TETRA4 HUB 💎", SubTitle = "🌐 Interface Completa - Redz UI", SaveFolder = "TETRA4_Hub_Config.lua" })
+TabPlayer:AddToggle({
+    Name = "🏃‍♂️ Ativar Velocidade",
+    Default = false,
+    Callback = function(v)
+        velocidadeAtiva = v
+        local humanoid = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid.WalkSpeed = v and velocidadeValor or 16
+        end
+    end
+})
 
--- Aba Utilidades local TabUtil = Window:MakeTab({"⚙️ Utilidades", "🧰"})
+TabPlayer:AddSlider({
+    Name = "⚡ Velocidade",
+    Min = 0,
+    Max = 100,
+    Default = 16,
+    Callback = function(v)
+        velocidadeValor = v
+        if velocidadeAtiva then
+            local humanoid = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+            if humanoid then
+                humanoid.WalkSpeed = velocidadeValor
+            end
+        end
+    end
+})
 
-TabUtil:AddButton({"🌑 Tema Escuro", function() redzlib:SetTheme("Dark") end})
+local puloAtivo = false
+local puloValor = 50
 
-TabUtil:AddButton({"🌌 Tema Muito Escuro", function() redzlib:SetTheme("Darker") end})
+TabPlayer:AddToggle({
+    Name = "🦘 Ativar Pulo",
+    Default = false,
+    Callback = function(v)
+        puloAtivo = v
+        local humanoid = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid.JumpPower = v and puloValor or 50
+        end
+    end
+})
 
-TabUtil:AddButton({"💜 Tema Roxo", function() redzlib:SetTheme("Purple") end})
+TabPlayer:AddSlider({
+    Name = "🦘 Pulo",
+    Min = 0,
+    Max = 250,
+    Default = 50,
+    Callback = function(v)
+        puloValor = v
+        if puloAtivo then
+            local humanoid = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+            if humanoid then
+                humanoid.JumpPower = puloValor
+            end
+        end
+    end
+})
 
--- Aba Player local TabPlayer = Window:MakeTab({"🏃 Player", "🎮"})
+local noclipAtivo = false
+TabPlayer:AddToggle({
+    Name = "🚫 Ativar Noclip",
+    Default = false,
+    Callback = function(v)
+        noclipAtivo = v
+        if v then
+            task.spawn(function()
+                while noclipAtivo do
+                    local character = game.Players.LocalPlayer.Character
+                    if character then
+                        for _, part in pairs(character:GetDescendants()) do
+                            if part:IsA("BasePart") then
+                                part.CanCollide = false
+                            end
+                        end
+                    end
+                    task.wait(0.1)
+                end
+            end)
+        end
+    end
+})
 
-TabPlayer:AddParagraph({"📃 Aviso", "Use com responsabilidade!"})
+TabPlayer:AddButton({
+    Name = "🔄 Rejoin Server",
+    Callback = function()
+        local TeleportService = game:GetService("TeleportService")
+        local Players = game:GetService("Players")
+        local LocalPlayer = Players.LocalPlayer
+        TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, LocalPlayer)
+    end
+})
 
-local velocidadeAtiva, velocidadeValor = false, 16 TabPlayer:AddToggle({ Name = "🏃‍♂️ Ativar Velocidade", Default = false, Callback = function(v) velocidadeAtiva = v getHumanoid().WalkSpeed = v and velocidadeValor or 16 end })
+-- Aba Avatar
+local TabAvatar = Window:MakeTab({"Avatar", "4483362458"})
 
-TabPlayer:AddSlider({ Name = "⚡ Velocidade", Min = 0, Max = 100, Default = 16, Callback = function(v) velocidadeValor = v if velocidadeAtiva then getHumanoid().WalkSpeed = v end end })
+TabAvatar:AddSection({"🎨 Funções"})
 
-local puloAtivo, puloValor = false, 50 TabPlayer:AddToggle({ Name = "🦘 Ativar Pulo", Default = false, Callback = function(v) puloAtivo = v getHumanoid().JumpPower = v and puloValor or 50 end })
+local remoteCorpo = game:GetService("ReplicatedStorage").Remotes.ChangeBodyColor
+local remoteNome = game:GetService("ReplicatedStorage").RE:FindFirstChild("1RPNam1eColo1r")
 
-TabPlayer:AddSlider({ Name = "🦘 Altura do Pulo", Min = 0, Max = 250, Default = 50, Callback = function(v) puloValor = v if puloAtivo then getHumanoid().JumpPower = v end end })
+local coresCorpo = {
+    "Really red", "Lime green", "Bright blue", "New Yeller",
+    "Royal purple", "Deep orange", "Medium stone grey",
+    "Hot pink", "Earth green"
+}
 
-local noclipAtivo = false TabPlayer:AddToggle({ Name = "🚫 Ativar Noclip", Default = false, Callback = function(v) noclipAtivo = v if v then task.spawn(function() while noclipAtivo do local character = player.Character if character then for _, part in ipairs(character:GetDescendants()) do if part:IsA("BasePart") then part.CanCollide = false end end end task.wait(0.1) end end) end end })
+local loopCorpoAtivo = false
+TabAvatar:AddToggle({
+    Name = "🌈 Trocar Cor do Corpo",
+    Default = false,
+    Callback = function(v)
+        loopCorpoAtivo = v
+        if v then
+            task.spawn(function()
+                while loopCorpoAtivo do
+                    for _, cor in ipairs(coresCorpo) do
+                        if not loopCorpoAtivo then break end
+                        remoteCorpo:FireServer(cor)
+                        task.wait(0.3)
+                    end
+                end
+            end)
+        end
+    end
+})
 
-TabPlayer:AddButton({"🔄 Rejoin", function() game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, player) end})
-
--- Aba Avatar local TabAvatar = Window:MakeTab({"🧍 Avatar", "🎨"})
-
-local remoteCorpo = game:GetService("ReplicatedStorage").Remotes.ChangeBodyColor local remoteNome = game:GetService("ReplicatedStorage").RE:FindFirstChild("1RPNam1eColo1r")
-
-local coresCorpo = { "Really red", "Lime green", "Bright blue", "New Yeller", "Royal purple", "Deep orange", "Medium stone grey", "Hot pink", "Earth green" }
-
-local loopCorpoAtivo = false TabAvatar:AddToggle({ Name = "🌈 Trocar Cor do Corpo", Default = false, Callback = function(v) loopCorpoAtivo = v if v then task.spawn(function() while loopCorpoAtivo do for _, cor in ipairs(coresCorpo) do if not loopCorpoAtivo then break end remoteCorpo:FireServer(cor) task.wait(0.3) end end end) end end })
-
-local loopNomeAtivo = false TabAvatar:AddToggle({ Name = "🌈 Trocar Cor do Nome RP (RGB)", Default = false, Callback = function(v) loopNomeAtivo = v if v then task.spawn(function() while loopNomeAtivo do local cor = Color3.fromHSV((tick() % 5) / 5, 1, 1) remoteNome:FireServer("PickingRPNameColor", cor) task.wait(0.1) end end) end end })
-
-Window:SelectTab(TabUtil)
-
+local loopNomeAtivo = false
+TabAvatar:AddToggle({
+    Name = "🌈 Trocar Cor do Nome RP (RGB)",
+    Default = false,
+    Callback = function(v)
+        loopNomeAtivo = v
+        if v then
+            task.spawn(function()
+                while loopNomeAtivo do
+                    local cor = Color3.fromHSV((tick() % 5) / 5, 1, 1)
+                    remoteNome:FireServer("PickingRPNameColor", cor)
+                    task.wait(0.1)
+                end
+            end)
+        end
+    end
+})
