@@ -1,33 +1,44 @@
 local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 
--- ✅ Marca o player com valor para detecção pelo Painel Admin
-local detector = Instance.new("BoolValue")
-detector.Name = "TETRA_SCRIPT_USER"
-detector.Parent = game.Players.LocalPlayer
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local function getHumanoid()
+    local character = player.Character or player.CharacterAdded:Wait()
+    return character:WaitForChild("Humanoid")
+end
+
+-- Marcar que o player está usando o script
+local function marcarUso()
+    local character = player.Character or player.CharacterAdded:Wait()
+    local flag = character:FindFirstChild("UsandoScriptTetra4")
+    if not flag then
+        flag = Instance.new("BoolValue")
+        flag.Name = "UsandoScriptTetra4"
+        flag.Value = true
+        flag.Parent = character
+    else
+        flag.Value = true
+    end
+end
+
+marcarUso()
 
 local Window = Rayfield:CreateWindow({
-    Name = "💎 TETRA4 HUB",
-    LoadingTitle = "🔰 Carregando o TETRA4...",
-    LoadingSubtitle = "🌀 Aguarde alguns segundos",
+    Name = "Tetra4 🛠️",
+    LoadingTitle = "Tetra4 Interface",
+    LoadingSubtitle = "Carregando...",
     ConfigurationSaving = { Enabled = false },
     Theme = "Default",
     ToggleUIKeybind = Enum.KeyCode.K
 })
 
-local function getHumanoid()
-    local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
-    return character:WaitForChild("Humanoid")
-end
-
-local Player = game.Players.LocalPlayer
-
--- 🟣 Aba PLAYER
-local TabPlayer = Window:CreateTab("🏃‍♂️ Player", 4483362458)
-TabPlayer:CreateSection("⚙️ Funções de Movimento")
+local TabPlayer = Window:CreateTab("👤 Player", 4483362458)
+TabPlayer:CreateSection("🎮 Funções")
 
 local velocidadeAtiva, velocidadeValor = false, 16
 TabPlayer:CreateToggle({
-    Name = "🚀 Ativar Velocidade",
+    Name = "🏃‍♂️ Ativar Velocidade",
     CurrentValue = false,
     Callback = function(v)
         velocidadeAtiva = v
@@ -35,9 +46,8 @@ TabPlayer:CreateToggle({
         humanoid.WalkSpeed = v and velocidadeValor or 16
     end
 })
-
 TabPlayer:CreateSlider({
-    Name = "📏 Velocidade",
+    Name = "⚡ Velocidade",
     Range = {0, 100},
     Increment = 1,
     Suffix = " WalkSpeed",
@@ -61,9 +71,8 @@ TabPlayer:CreateToggle({
         humanoid.JumpPower = v and puloValor or 50
     end
 })
-
 TabPlayer:CreateSlider({
-    Name = "🎚️ Pulo",
+    Name = "🦘 Pulo",
     Range = {0, 250},
     Increment = 1,
     Suffix = " JumpPower",
@@ -79,14 +88,14 @@ TabPlayer:CreateSlider({
 
 local noclipAtivo = false
 TabPlayer:CreateToggle({
-    Name = "🛸 Ativar Noclip",
+    Name = "🚫 Ativar Noclip",
     CurrentValue = false,
     Callback = function(v)
         noclipAtivo = v
         if v then
             task.spawn(function()
                 while noclipAtivo do
-                    local character = Player.Character
+                    local character = player.Character
                     if character then
                         for _, part in ipairs(character:GetDescendants()) do
                             if part:IsA("BasePart") then
@@ -102,17 +111,19 @@ TabPlayer:CreateToggle({
 })
 
 TabPlayer:CreateButton({
-    Name = "🔁 Reentrar no Servidor",
+    Name = "🔄 Rejoin Server",
     Suffix = "By Renan",
     Callback = function()
         local TeleportService = game:GetService("TeleportService")
-        TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, Player)
+        local Players = game:GetService("Players")
+        local LocalPlayer = Players.LocalPlayer
+
+        TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, LocalPlayer)
     end
 })
 
--- 🟡 Aba AVATAR
-local TabAvatar = Window:CreateTab("🎨 Avatar", 4483362458)
-TabAvatar:CreateSection("🎡 Personalização de Cor")
+local TabAvatar = Window:CreateTab("🧍 Avatar", 4483362458)
+TabAvatar:CreateSection("🎨 Funções")
 
 local remoteCorpo = game:GetService("ReplicatedStorage").Remotes.ChangeBodyColor
 local remoteNome = game:GetService("ReplicatedStorage").RE:FindFirstChild("1RPNam1eColo1r")
@@ -125,7 +136,7 @@ local coresCorpo = {
 
 local loopCorpoAtivo = false
 TabAvatar:CreateToggle({
-    Name = "🎨 Trocar Cor do Corpo",
+    Name = "🌈 Trocar Cor do Corpo",
     CurrentValue = false,
     Callback = function(v)
         loopCorpoAtivo = v

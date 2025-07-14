@@ -1,12 +1,12 @@
 local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 
 local allowedUsers = {
-    ["3811306935"] = "TETRA_ADM", -- ID e Key autorizada
-    -- Você pode adicionar mais usuários aqui
+    ["3811306935"] = "TETRA_ADM", -- IDs autorizados (adicione mais aqui)
 }
 
-local Player = game.Players.LocalPlayer
-local userId = tostring(Player.UserId)
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local userId = tostring(player.UserId)
 
 local Window = Rayfield:CreateWindow({
     Name = "🔒 Painel Admin - TETRA4",
@@ -28,7 +28,7 @@ local Window = Rayfield:CreateWindow({
 })
 
 if allowedUsers[userId] then
-    print("✅ Acesso autorizado para o usuário:", Player.Name, "ID:", userId)
+    print("✅ Acesso autorizado para o usuário:", player.Name, "ID:", userId)
 else
     print("❌ Acesso negado! ID:", userId)
 end
@@ -38,45 +38,28 @@ Tab:CreateSection("🎁 Comandos do Admin")
 
 Tab:CreateParagraph({
     Title = "✅ Acesso Liberado",
-    Content = "Olá " .. Player.Name .. "! Seu ID (".. userId .. ") foi autorizado!"
+    Content = "Olá " .. player.Name .. "! Seu ID (".. userId .. ") foi autorizado!"
 })
 
--- Botão de mensagem padrão
-Tab:CreateButton({
-    Name = "📢 Mensagem Teste",
-    Callback = function()
-        Rayfield:Notify({
-            Title = "✅ Sucesso",
-            Content = "Você tem acesso ao painel admin!",
-            Duration = 5
-        })
-    end
-})
-
--- ✅ Botão para detectar players usando o script principal
-Tab:CreateButton({
-    Name = "👁️ Detectar Usuários do Script",
-    Callback = function()
-        local players = game:GetService("Players"):GetPlayers()
-        local encontrados = 0
-
-        for _, player in ipairs(players) do
-            if player:FindFirstChild("TETRA_SCRIPT_USER") then
-                encontrados = 1
+local function checarUsuarios()
+    for _, p in pairs(Players:GetPlayers()) do
+        local character = p.Character
+        if character then
+            local flag = character:FindFirstChild("UsandoScriptTetra4")
+            if flag and flag.Value == true then
                 Rayfield:Notify({
-                    Title = "📌 Detectado",
-                    Content = "Usuário: "..player.Name.." | ID: "..player.UserId,
-                    Duration = 6
+                    Title = "🔔 Usuário Detectado",
+                    Content = "Usuário usando o script: "..p.Name.." (ID: "..p.UserId..")",
+                    Duration = 5
                 })
             end
         end
+    end
+end
 
-        if encontrados == 0 then
-            Rayfield:Notify({
-                Title = "🚫 Nenhum Encontrado",
-                Content = "Nenhum player usando o script foi detectado.",
-                Duration = 6
-            })
-        end
+Tab:CreateButton({
+    Name = "🔍 Verificar usuários usando script",
+    Callback = function()
+        checarUsuarios()
     end
 })
