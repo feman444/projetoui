@@ -1,125 +1,143 @@
--- Load Kavo UI mais recente (adaptado para mobile e executores comuns)
-local KavoUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/kavopoint/Kavo-UI-Library/main/source.lua"))()
-
--- Criar a janela principal
-local Window = KavoUI.CreateLib("Tetra4 Hub 🛠️", "DarkTheme")
-
--- Aba Player
-local PlayerTab = Window:NewTab("👤 Player")
-local PlayerSection = PlayerTab:NewSection("🎮 Funções")
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
 local function getHumanoid()
-    local char = player.Character or player.CharacterAdded:Wait()
-    return char:WaitForChild("Humanoid")
+    local character = player.Character or player.CharacterAdded:Wait()
+    return character:WaitForChild("Humanoid")
 end
 
+local Window = Rayfield:CreateWindow({
+    Name = "Tetra4 🛠️",
+    LoadingTitle = "🔄 Carregando Menu Tetra4...",
+    LoadingSubtitle = "💻 Script otimizado",
+    ConfigurationSaving = { Enabled = false },
+    Theme = "Default",
+    ToggleUIKeybind = Enum.KeyCode.K
+})
+
+-- 👤 Aba Player
+local TabPlayer = Window:CreateTab("👤 Player", 4483362458)
+TabPlayer:CreateSection("🎮 Funções de Movimento")
+
 -- Velocidade
-local velocidadeAtiva = false
-local velocidadeValor = 16
-
-PlayerSection:NewToggle("🏃‍♂️ Ativar Velocidade", "Ativa velocidade customizada", function(state)
-    velocidadeAtiva = state
-    local humanoid = getHumanoid()
-    humanoid.WalkSpeed = state and velocidadeValor or 16
-end)
-
-PlayerSection:NewSlider("⚡ Velocidade", "Define a velocidade do personagem", 100, 0, function(value)
-    velocidadeValor = value
-    if velocidadeAtiva then
+local velocidadeAtiva, velocidadeValor = false, 16
+TabPlayer:CreateToggle({
+    Name = "🏃‍♂️ Velocidade",
+    CurrentValue = false,
+    Callback = function(v)
+        velocidadeAtiva = v
         local humanoid = getHumanoid()
-        humanoid.WalkSpeed = value
+        humanoid.WalkSpeed = v and velocidadeValor or 16
     end
-end)
+})
+TabPlayer:CreateSlider({
+    Name = "⚡ Definir Velocidade",
+    Range = {0, 100},
+    Increment = 1,
+    CurrentValue = 16,
+    Callback = function(v)
+        velocidadeValor = v
+        if velocidadeAtiva then
+            getHumanoid().WalkSpeed = velocidadeValor
+        end
+    end
+})
 
 -- Pulo
-local puloAtivo = false
-local puloValor = 50
-
-PlayerSection:NewToggle("🦘 Ativar Pulo", "Ativa pulo customizado", function(state)
-    puloAtivo = state
-    local humanoid = getHumanoid()
-    humanoid.JumpPower = state and puloValor or 50
-end)
-
-PlayerSection:NewSlider("🦘 Pulo", "Define o poder do pulo", 250, 0, function(value)
-    puloValor = value
-    if puloAtivo then
-        local humanoid = getHumanoid()
-        humanoid.JumpPower = value
+local puloAtivo, puloValor = false, 50
+TabPlayer:CreateToggle({
+    Name = "🦘 Pulo",
+    CurrentValue = false,
+    Callback = function(v)
+        puloAtivo = v
+        getHumanoid().JumpPower = v and puloValor or 50
     end
-end)
+})
+TabPlayer:CreateSlider({
+    Name = "🎚️ Definir Pulo",
+    Range = {0, 250},
+    Increment = 1,
+    CurrentValue = 50,
+    Callback = function(v)
+        puloValor = v
+        if puloAtivo then
+            getHumanoid().JumpPower = puloValor
+        end
+    end
+})
 
 -- Noclip
 local noclipAtivo = false
-
-PlayerSection:NewToggle("🚫 Ativar Noclip", "Desativa colisão do personagem", function(state)
-    noclipAtivo = state
-    if state then
-        task.spawn(function()
-            while noclipAtivo do
-                local char = player.Character
-                if char then
-                    for _, part in pairs(char:GetDescendants()) do
+TabPlayer:CreateToggle({
+    Name = "🚫 Noclip",
+    CurrentValue = false,
+    Callback = function(v)
+        noclipAtivo = v
+        if v then
+            task.spawn(function()
+                while noclipAtivo do
+                    for _, part in ipairs(player.Character:GetDescendants()) do
                         if part:IsA("BasePart") then
                             part.CanCollide = false
                         end
                     end
+                    task.wait(0.1)
                 end
-                task.wait(0.1)
-            end
-        end)
+            end)
+        end
     end
-end)
+})
 
--- Rejoin Button
-PlayerSection:NewButton("🔄 Rejoin Server", "Reentra no servidor atual", function()
-    local TeleportService = game:GetService("TeleportService")
-    TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, player)
-end)
+TabPlayer:CreateButton({
+    Name = "🔄 Reentrar no Server",
+    Callback = function()
+        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, player)
+    end
+})
 
--- Aba Avatar
-local AvatarTab = Window:NewTab("🧍 Avatar")
-local AvatarSection = AvatarTab:NewSection("🎨 Funções")
+-- 🧍 Aba Avatar
+local TabAvatar = Window:CreateTab("🧍 Avatar", 4483362458)
+TabAvatar:CreateSection("🎨 Edição Visual")
 
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local remoteCorpo = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeBodyColor")
-local remoteNome = ReplicatedStorage:WaitForChild("RE"):FindFirstChild("1RPNam1eColo1r")
-
-local coresCorpo = {
-    "Really red", "Lime green", "Bright blue", "New Yeller",
-    "Royal purple", "Deep orange", "Medium stone grey",
-    "Hot pink", "Earth green"
-}
+local remoteCorpo = game:GetService("ReplicatedStorage").Remotes.ChangeBodyColor
+local remoteNome = game:GetService("ReplicatedStorage").RE:FindFirstChild("1RPNam1eColo1r")
+local coresCorpo = {"Really red", "Lime green", "Bright blue", "New Yeller", "Royal purple", "Deep orange", "Medium stone grey", "Hot pink", "Earth green"}
 
 local loopCorpoAtivo = false
-AvatarSection:NewToggle("🌈 Trocar Cor do Corpo", "Alterna cores do corpo automaticamente", function(state)
-    loopCorpoAtivo = state
-    if state then
-        task.spawn(function()
-            while loopCorpoAtivo do
-                for _, cor in ipairs(coresCorpo) do
-                    if not loopCorpoAtivo then break end
-                    remoteCorpo:FireServer(cor)
-                    task.wait(0.3)
+TabAvatar:CreateToggle({
+    Name = "🌈 Trocar Cor do Corpo",
+    CurrentValue = false,
+    Callback = function(v)
+        loopCorpoAtivo = v
+        if v then
+            task.spawn(function()
+                while loopCorpoAtivo do
+                    for _, cor in ipairs(coresCorpo) do
+                        if not loopCorpoAtivo then break end
+                        remoteCorpo:FireServer(cor)
+                        task.wait(0.3)
+                    end
                 end
-            end
-        end)
+            end)
+        end
     end
-end)
+})
 
 local loopNomeAtivo = false
-AvatarSection:NewToggle("🌈 Trocar Cor do Nome RP (RGB)", "Altera cor do nome RP dinamicamente", function(state)
-    loopNomeAtivo = state
-    if state then
-        task.spawn(function()
-            while loopNomeAtivo do
-                local cor = Color3.fromHSV((tick() % 5) / 5, 1, 1)
-                remoteNome:FireServer("PickingRPNameColor", cor)
-                task.wait(0.1)
-            end
-        end)
+TabAvatar:CreateToggle({
+    Name = "🌈 Nome RGB",
+    CurrentValue = false,
+    Callback = function(v)
+        loopNomeAtivo = v
+        if v then
+            task.spawn(function()
+                while loopNomeAtivo do
+                    remoteNome:FireServer("PickingRPNameColor", Color3.fromHSV((tick() % 5) / 5, 1, 1))
+                    task.wait(0.1)
+                end
+            end)
+        end
     end
-end)
+})
