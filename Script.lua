@@ -5,38 +5,101 @@ local Window = Rayfield:CreateWindow({
 	LoadingTitle = "Carregando Script...",
 	LoadingSubtitle = "CARREGADO.",
 	ConfigurationSaving = { Enabled = false },
-	Discord = { Enabled = false },
-	KeySystem = false,
 	Theme = "Default",
 	ToggleUIKeybind = Enum.KeyCode.K
 })
 
-local Tab = Window:CreateTab("Principal", 4483362458)
-Tab:CreateSection("Funções")
+local TabPlayer = Window:CreateTab("Player", 4483362458)
+TabPlayer:CreateSection("Funções")
 
-local ativo = false
-local loop
+local velocidadeAtiva = false
+local velocidadeValor = 16
 
-Tab:CreateToggle({
-	Name = "RGB COLOR",
+TabPlayer:CreateToggle({
+	Name = "Ativar Velocidade",
 	CurrentValue = false,
 	Callback = function(v)
-		ativo = v
-		if ativo then
-			loop = task.spawn(function()
-				local p = game.Players.LocalPlayer
-				while ativo and p.Character do
-					local corUnica = Color3.new(math.random(), math.random(), math.random())
-					for _, parte in pairs(p.Character:GetDescendants()) do
-						if parte:IsA("BasePart") and parte.Name ~= "HumanoidRootPart" then
-							parte.Color = corUnica
-						end
+		velocidadeAtiva = v
+		local humanoid = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+		if humanoid then
+			humanoid.WalkSpeed = v and velocidadeValor or 16
+		end
+	end
+})
+
+TabPlayer:CreateSlider({
+	Name = "Velocidade",
+	Range = {0, 100},
+	Increment = 1,
+	Suffix = " WalkSpeed",
+	CurrentValue = 16,
+	Callback = function(v)
+		velocidadeValor = v
+		if velocidadeAtiva then
+			local humanoid = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+			if humanoid then
+				humanoid.WalkSpeed = velocidadeValor
+			end
+		end
+	end
+})
+
+local TabAvatar = Window:CreateTab("Avatar", 4483362458)
+TabAvatar:CreateSection("Funções")
+
+local remoteCorpo = game:GetService("ReplicatedStorage").Remotes.ChangeBodyColor
+local remoteNome = game:GetService("ReplicatedStorage").RE:FindFirstChild("1RPNam1eColo1r")
+
+local loopCorpo, loopNome
+
+local coresCorpo = {
+	"Really red", "Lime green", "Bright blue", "New Yeller",
+	"Royal purple", "Deep orange", "Medium stone grey",
+	"Hot pink", "Earth green"
+}
+
+local coresNome = {
+	Color3.fromRGB(255, 0, 0), Color3.fromRGB(0, 255, 0),
+	Color3.fromRGB(0, 0, 255), Color3.fromRGB(255, 255, 0),
+	Color3.fromRGB(128, 0, 128), Color3.fromRGB(255, 165, 0)
+}
+
+TabAvatar:CreateToggle({
+	Name = "Trocar Cor do Corpo",
+	CurrentValue = false,
+	Callback = function(v)
+		if v then
+			loopCorpo = task.spawn(function()
+				while true do
+					for _, cor in ipairs(coresCorpo) do
+						if not loopCorpo or not v then return end
+						remoteCorpo:FireServer(cor)
+						task.wait(0.3)
 					end
-					wait(0.3)
 				end
 			end)
-		elseif loop then
-			task.cancel(loop)
+		else
+			if loopCorpo then task.cancel(loopCorpo) end
+		end
+	end
+})
+
+TabAvatar:CreateToggle({
+	Name = "Trocar Cor do Nome RP",
+	CurrentValue = false,
+	Callback = function(v)
+		if v then
+			loopNome = task.spawn(function()
+				while true do
+					for _, cor in ipairs(coresNome) do
+						if not loopNome or not v then return end
+						remoteNome:FireServer("PickingRPNameColor", cor)
+						task.wait(0.3)
+					end
+				end
+			end)
+		else
+			if loopNome then task.cancel(loopNome) end
 		end
 	end
 })
