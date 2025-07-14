@@ -1,4 +1,4 @@
-local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/feman444/projetoui/main/Script.lua'))()
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
     Name = "MATHEUS X HUB",
@@ -91,6 +91,18 @@ TabPlayer:CreateToggle({
     end
 })
 
+TabPlayer:CreateButton({
+    Name = "Rejoin Server",
+    Suffix = "By Renan",
+    Callback = function()
+        local TeleportService = game:GetService("TeleportService")
+        local Players = game:GetService("Players")
+        local LocalPlayer = Players.LocalPlayer
+
+        TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, LocalPlayer)
+    end
+})
+
 local TabAvatar = Window:CreateTab("Avatar", 4483362458)
 TabAvatar:CreateSection("Funções")
 
@@ -103,8 +115,7 @@ local coresCorpo = {
     "Hot pink", "Earth green"
 }
 
-local loopCorpoAtivo, loopNomeAtivo = false, false
-
+local loopCorpoAtivo = false
 TabAvatar:CreateToggle({
     Name = "Trocar Cor do Corpo",
     CurrentValue = false,
@@ -124,6 +135,7 @@ TabAvatar:CreateToggle({
     end
 })
 
+local loopNomeAtivo = false
 TabAvatar:CreateToggle({
     Name = "Trocar Cor do Nome RP (RGB)",
     CurrentValue = false,
@@ -137,59 +149,6 @@ TabAvatar:CreateToggle({
                     task.wait(0.1)
                 end
             end)
-        end
-    end
-})
-
--- ESP na parte do Toggle(Esp)
-local espAtivo = false
-local billboards = {}
-
-TabAvatar:CreateToggle({
-    Name = "Ativar ESP",
-    CurrentValue = false,
-    Callback = function(v)
-        espAtivo = v
-        if espAtivo then
-            task.spawn(function()
-                while espAtivo do
-                    for _, b in pairs(billboards) do
-                        if b and b.Parent then b:Destroy() end
-                    end
-                    billboards = {}
-
-                    for _, player in ipairs(game.Players:GetPlayers()) do
-                        if player ~= game.Players.LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-                            local billboard = Instance.new("BillboardGui")
-                            billboard.Size = UDim2.new(0, 100, 0, 30)
-                            billboard.AlwaysOnTop = true
-                            billboard.Adornee = player.Character.HumanoidRootPart
-                            billboard.Parent = player.Character
-
-                            local text = Instance.new("TextLabel")
-                            text.Size = UDim2.new(1, 0, 1, 0)
-                            text.BackgroundTransparency = 1
-                            text.Text = player.Name
-                            text.TextColor3 = Color3.fromRGB(0, 150, 255)
-                            text.TextScaled = true
-                            text.Parent = billboard
-
-                            table.insert(billboards, billboard)
-                        end
-                    end
-                    task.wait(0.5)
-                end
-
-                for _, b in pairs(billboards) do
-                    if b and b.Parent then b:Destroy() end
-                end
-                billboards = {}
-            end)
-        else
-            for _, b in pairs(billboards) do
-                if b and b.Parent then b:Destroy() end
-            end
-            billboards = {}
         end
     end
 })
