@@ -1,9 +1,14 @@
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+
+-- ✅ Marca o player com valor para detecção pelo Painel Admin
+local detector = Instance.new("BoolValue")
+detector.Name = "TETRA_SCRIPT_USER"
+detector.Parent = game.Players.LocalPlayer
 
 local Window = Rayfield:CreateWindow({
-    Name = "✨ Tetra4 | HUB Principal ✨",
-    LoadingTitle = "🔵 Tetra4 Carregando...",
-    LoadingSubtitle = "🌟 By Renan 🌟",
+    Name = "💎 TETRA4 HUB",
+    LoadingTitle = "🔰 Carregando o TETRA4...",
+    LoadingSubtitle = "🌀 Aguarde alguns segundos",
     ConfigurationSaving = { Enabled = false },
     Theme = "Default",
     ToggleUIKeybind = Enum.KeyCode.K
@@ -14,9 +19,11 @@ local function getHumanoid()
     return character:WaitForChild("Humanoid")
 end
 
--- 🟦 Aba Player
-local TabPlayer = Window:CreateTab("🎮 Player", 4483362458)
-TabPlayer:CreateSection("⚙️ Funções do Player")
+local Player = game.Players.LocalPlayer
+
+-- 🟣 Aba PLAYER
+local TabPlayer = Window:CreateTab("🏃‍♂️ Player", 4483362458)
+TabPlayer:CreateSection("⚙️ Funções de Movimento")
 
 local velocidadeAtiva, velocidadeValor = false, 16
 TabPlayer:CreateToggle({
@@ -28,8 +35,9 @@ TabPlayer:CreateToggle({
         humanoid.WalkSpeed = v and velocidadeValor or 16
     end
 })
+
 TabPlayer:CreateSlider({
-    Name = "⚡ Velocidade",
+    Name = "📏 Velocidade",
     Range = {0, 100},
     Increment = 1,
     Suffix = " WalkSpeed",
@@ -53,8 +61,9 @@ TabPlayer:CreateToggle({
         humanoid.JumpPower = v and puloValor or 50
     end
 })
+
 TabPlayer:CreateSlider({
-    Name = "🏀 Força do Pulo",
+    Name = "🎚️ Pulo",
     Range = {0, 250},
     Increment = 1,
     Suffix = " JumpPower",
@@ -70,14 +79,14 @@ TabPlayer:CreateSlider({
 
 local noclipAtivo = false
 TabPlayer:CreateToggle({
-    Name = "🚫 Noclip (Atravessar Paredes)",
+    Name = "🛸 Ativar Noclip",
     CurrentValue = false,
     Callback = function(v)
         noclipAtivo = v
         if v then
             task.spawn(function()
                 while noclipAtivo do
-                    local character = game.Players.LocalPlayer.Character
+                    local character = Player.Character
                     if character then
                         for _, part in ipairs(character:GetDescendants()) do
                             if part:IsA("BasePart") then
@@ -93,18 +102,17 @@ TabPlayer:CreateToggle({
 })
 
 TabPlayer:CreateButton({
-    Name = "🔁 Rejoin Server",
+    Name = "🔁 Reentrar no Servidor",
     Suffix = "By Renan",
     Callback = function()
         local TeleportService = game:GetService("TeleportService")
-        local Players = game:GetService("Players")
-        TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, Players.LocalPlayer)
+        TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, Player)
     end
 })
 
--- 🟨 Aba Avatar
-local TabAvatar = Window:CreateTab("🧍 Avatar", 4483362458)
-TabAvatar:CreateSection("🎨 Personalização de Avatar")
+-- 🟡 Aba AVATAR
+local TabAvatar = Window:CreateTab("🎨 Avatar", 4483362458)
+TabAvatar:CreateSection("🎡 Personalização de Cor")
 
 local remoteCorpo = game:GetService("ReplicatedStorage").Remotes.ChangeBodyColor
 local remoteNome = game:GetService("ReplicatedStorage").RE:FindFirstChild("1RPNam1eColo1r")
@@ -117,7 +125,7 @@ local coresCorpo = {
 
 local loopCorpoAtivo = false
 TabAvatar:CreateToggle({
-    Name = "🌈 Trocar Cor do Corpo",
+    Name = "🎨 Trocar Cor do Corpo",
     CurrentValue = false,
     Callback = function(v)
         loopCorpoAtivo = v
@@ -137,7 +145,7 @@ TabAvatar:CreateToggle({
 
 local loopNomeAtivo = false
 TabAvatar:CreateToggle({
-    Name = "💫 Cor do Nome RP (RGB)",
+    Name = "🌈 Trocar Cor do Nome RP (RGB)",
     CurrentValue = false,
     Callback = function(v)
         loopNomeAtivo = v
