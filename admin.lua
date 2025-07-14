@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 
 local allowedUsers = {
-    ["5593313487"] = "TETRA_ADM", -- ID e Key autorizada
+    ["3811306935"] = "TETRA_ADM", -- ID e Key autorizada
     -- Você pode adicionar mais usuários aqui
 }
 
