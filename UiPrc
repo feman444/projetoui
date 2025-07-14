@@ -1,34 +1,25 @@
--- (Opcional) Ativa modo seguro do Rayfield
-getgenv().SecureMode = true
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
--- Carrega o Rayfield UI
-local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/UI-Interface/CustomFIeld/main/RayField.lua"))()
-
--- Cria a janela principal
 local Window = Rayfield:CreateWindow({
-	Name = "Interface de Teste",
+	Name = "Minha Rayfield UI",
 	LoadingTitle = "Carregando...",
-	LoadingSubtitle = "por Você :)",
+	LoadingSubtitle = "Interface pronta",
 	ConfigurationSaving = {
-		Enabled = false -- Salvar configurações locais (true para ativar depois)
+		Enabled = false
 	},
 	Discord = {
-		Enabled = false -- Ativar integração com Discord
+		Enabled = false
 	},
-	KeySystem = false, -- Ativar sistema de chave (true se quiser segurança)
-	Theme = "Default", -- Estilos: Default, Light, Aqua, Jester, Crimson, etc.
-	ToggleUIKeybind = Enum.KeyCode.K -- Tecla para abrir/fechar UI
+	KeySystem = false,
+	Theme = "Default",
+	ToggleUIKeybind = Enum.KeyCode.K
 })
 
--- Cria uma aba
-local MainTab = Window:CreateTab("Principal", 4483362458) -- Nome e ícone (ID opcional)
+local Tab = Window:CreateTab("Principal", 4483362458)
+local Section = Tab:CreateSection("Funções")
 
--- Cria uma seção dentro da aba
-local MainSection = MainTab:CreateSection("Funções")
-
--- Cria um botão de teste
-MainTab:CreateButton({
-	Name = "Clique para testar",
+Tab:CreateButton({
+	Name = "Testar Botão",
 	Callback = function()
 		Rayfield:Notify({
 			Title = "Funcionando!",
