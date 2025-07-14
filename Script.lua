@@ -1,9 +1,9 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-    Name = "MATHEUS X HUB",
-    LoadingTitle = "MATHEUS X HUB",
-    LoadingSubtitle = "Carregando...",
+    Name = "✨ Tetra4 | HUB Principal ✨",
+    LoadingTitle = "🔵 Tetra4 Carregando...",
+    LoadingSubtitle = "🌟 By Renan 🌟",
     ConfigurationSaving = { Enabled = false },
     Theme = "Default",
     ToggleUIKeybind = Enum.KeyCode.K
@@ -14,12 +14,13 @@ local function getHumanoid()
     return character:WaitForChild("Humanoid")
 end
 
-local TabPlayer = Window:CreateTab("Player", 4483362458)
-TabPlayer:CreateSection("Funções")
+-- 🟦 Aba Player
+local TabPlayer = Window:CreateTab("🎮 Player", 4483362458)
+TabPlayer:CreateSection("⚙️ Funções do Player")
 
 local velocidadeAtiva, velocidadeValor = false, 16
 TabPlayer:CreateToggle({
-    Name = "Ativar Velocidade",
+    Name = "🚀 Ativar Velocidade",
     CurrentValue = false,
     Callback = function(v)
         velocidadeAtiva = v
@@ -28,7 +29,7 @@ TabPlayer:CreateToggle({
     end
 })
 TabPlayer:CreateSlider({
-    Name = "Velocidade",
+    Name = "⚡ Velocidade",
     Range = {0, 100},
     Increment = 1,
     Suffix = " WalkSpeed",
@@ -44,7 +45,7 @@ TabPlayer:CreateSlider({
 
 local puloAtivo, puloValor = false, 50
 TabPlayer:CreateToggle({
-    Name = "Ativar Pulo",
+    Name = "🦘 Ativar Pulo",
     CurrentValue = false,
     Callback = function(v)
         puloAtivo = v
@@ -53,7 +54,7 @@ TabPlayer:CreateToggle({
     end
 })
 TabPlayer:CreateSlider({
-    Name = "Pulo",
+    Name = "🏀 Força do Pulo",
     Range = {0, 250},
     Increment = 1,
     Suffix = " JumpPower",
@@ -69,7 +70,7 @@ TabPlayer:CreateSlider({
 
 local noclipAtivo = false
 TabPlayer:CreateToggle({
-    Name = "Ativar Noclip",
+    Name = "🚫 Noclip (Atravessar Paredes)",
     CurrentValue = false,
     Callback = function(v)
         noclipAtivo = v
@@ -92,19 +93,18 @@ TabPlayer:CreateToggle({
 })
 
 TabPlayer:CreateButton({
-    Name = "Rejoin Server",
+    Name = "🔁 Rejoin Server",
     Suffix = "By Renan",
     Callback = function()
         local TeleportService = game:GetService("TeleportService")
         local Players = game:GetService("Players")
-        local LocalPlayer = Players.LocalPlayer
-
-        TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, LocalPlayer)
+        TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, Players.LocalPlayer)
     end
 })
 
-local TabAvatar = Window:CreateTab("Avatar", 4483362458)
-TabAvatar:CreateSection("Funções")
+-- 🟨 Aba Avatar
+local TabAvatar = Window:CreateTab("🧍 Avatar", 4483362458)
+TabAvatar:CreateSection("🎨 Personalização de Avatar")
 
 local remoteCorpo = game:GetService("ReplicatedStorage").Remotes.ChangeBodyColor
 local remoteNome = game:GetService("ReplicatedStorage").RE:FindFirstChild("1RPNam1eColo1r")
@@ -117,7 +117,7 @@ local coresCorpo = {
 
 local loopCorpoAtivo = false
 TabAvatar:CreateToggle({
-    Name = "Trocar Cor do Corpo",
+    Name = "🌈 Trocar Cor do Corpo",
     CurrentValue = false,
     Callback = function(v)
         loopCorpoAtivo = v
@@ -137,7 +137,7 @@ TabAvatar:CreateToggle({
 
 local loopNomeAtivo = false
 TabAvatar:CreateToggle({
-    Name = "Trocar Cor do Nome RP (RGB)",
+    Name = "💫 Cor do Nome RP (RGB)",
     CurrentValue = false,
     Callback = function(v)
         loopNomeAtivo = v
