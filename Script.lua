@@ -1,59 +1,39 @@
-local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
 
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
-
--- Certifique-se que o RemoteEvent existe, se não, cria (não funciona no cliente, mas ok)
-local usoEvent = ReplicatedStorage:FindFirstChild("PlayerUsageEvent")
-if not usoEvent then
-    -- Normalmente só o server cria, mas só pra garantir
-    usoEvent = Instance.new("RemoteEvent")
-    usoEvent.Name = "PlayerUsageEvent"
-    usoEvent.Parent = ReplicatedStorage
-end
-
--- Função para avisar o servidor que está usando o script
-local function avisarUso()
-    usoEvent:FireServer()
-end
-
--- Chama para avisar assim que o script rodar
-avisarUso()
 
 local function getHumanoid()
     local character = player.Character or player.CharacterAdded:Wait()
     return character:WaitForChild("Humanoid")
 end
 
-local Window = Rayfield:CreateWindow({
-    Name = "Tetra4 🛠️",
-    LoadingTitle = "Tetra4 Interface",
-    LoadingSubtitle = "Carregando...",
-    ConfigurationSaving = { Enabled = false },
-    Theme = "Default",
-    ToggleUIKeybind = Enum.KeyCode.K
+local Window = redzlib:MakeWindow({
+    Title = "Tetra4 🛠️",
+    SubTitle = "Interface do Script",
+    SaveFolder = "Tetra4Config"
 })
 
-local TabPlayer = Window:CreateTab("👤 Player", 4483362458)
-TabPlayer:CreateSection("🎮 Funções")
+local TabPlayer = Window:MakeTab({"👤 Player", "user"})
+
+TabPlayer:AddSection({"🎮 Funções"})
 
 local velocidadeAtiva, velocidadeValor = false, 16
-TabPlayer:CreateToggle({
+TabPlayer:AddToggle({
     Name = "🏃‍♂️ Ativar Velocidade",
-    CurrentValue = false,
+    Default = false,
     Callback = function(v)
         velocidadeAtiva = v
         local humanoid = getHumanoid()
         humanoid.WalkSpeed = v and velocidadeValor or 16
     end
 })
-TabPlayer:CreateSlider({
+
+TabPlayer:AddSlider({
     Name = "⚡ Velocidade",
-    Range = {0, 100},
-    Increment = 1,
-    Suffix = " WalkSpeed",
-    CurrentValue = 16,
+    Min = 0,
+    Max = 100,
+    Default = 16,
     Callback = function(v)
         velocidadeValor = v
         if velocidadeAtiva then
@@ -64,21 +44,21 @@ TabPlayer:CreateSlider({
 })
 
 local puloAtivo, puloValor = false, 50
-TabPlayer:CreateToggle({
+TabPlayer:AddToggle({
     Name = "🦘 Ativar Pulo",
-    CurrentValue = false,
+    Default = false,
     Callback = function(v)
         puloAtivo = v
         local humanoid = getHumanoid()
         humanoid.JumpPower = v and puloValor or 50
     end
 })
-TabPlayer:CreateSlider({
+
+TabPlayer:AddSlider({
     Name = "🦘 Pulo",
-    Range = {0, 250},
-    Increment = 1,
-    Suffix = " JumpPower",
-    CurrentValue = 50,
+    Min = 0,
+    Max = 250,
+    Default = 50,
     Callback = function(v)
         puloValor = v
         if puloAtivo then
@@ -89,9 +69,9 @@ TabPlayer:CreateSlider({
 })
 
 local noclipAtivo = false
-TabPlayer:CreateToggle({
+TabPlayer:AddToggle({
     Name = "🚫 Ativar Noclip",
-    CurrentValue = false,
+    Default = false,
     Callback = function(v)
         noclipAtivo = v
         if v then
@@ -112,20 +92,17 @@ TabPlayer:CreateToggle({
     end
 })
 
-TabPlayer:CreateButton({
+TabPlayer:AddButton({
     Name = "🔄 Rejoin Server",
-    Suffix = "By Renan",
     Callback = function()
         local TeleportService = game:GetService("TeleportService")
-        local Players = game:GetService("Players")
-        local LocalPlayer = Players.LocalPlayer
-
-        TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, LocalPlayer)
+        TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, player)
     end
 })
 
-local TabAvatar = Window:CreateTab("🧍 Avatar", 4483362458)
-TabAvatar:CreateSection("🎨 Funções")
+local TabAvatar = Window:MakeTab({"🧍 Avatar", "user"})
+
+TabAvatar:AddSection({"🎨 Funções"})
 
 local remoteCorpo = game:GetService("ReplicatedStorage").Remotes.ChangeBodyColor
 local remoteNome = game:GetService("ReplicatedStorage").RE:FindFirstChild("1RPNam1eColo1r")
@@ -137,9 +114,9 @@ local coresCorpo = {
 }
 
 local loopCorpoAtivo = false
-TabAvatar:CreateToggle({
+TabAvatar:AddToggle({
     Name = "🌈 Trocar Cor do Corpo",
-    CurrentValue = false,
+    Default = false,
     Callback = function(v)
         loopCorpoAtivo = v
         if v then
@@ -157,9 +134,9 @@ TabAvatar:CreateToggle({
 })
 
 local loopNomeAtivo = false
-TabAvatar:CreateToggle({
+TabAvatar:AddToggle({
     Name = "🌈 Trocar Cor do Nome RP (RGB)",
-    CurrentValue = false,
+    Default = false,
     Callback = function(v)
         loopNomeAtivo = v
         if v then
@@ -173,3 +150,32 @@ TabAvatar:CreateToggle({
         end
     end
 })
+
+-- BOTÃO EXTERNO PARA ABRIR/FECHAR O MENU --
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local UIS = UserInputService
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "Tetra4ToggleGui"
+ScreenGui.Parent = player:WaitForChild("PlayerGui")
+
+local ToggleButton = Instance.new("ImageButton")
+ToggleButton.Name = "ToggleButton"
+ToggleButton.Parent = ScreenGui
+ToggleButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+ToggleButton.BorderSizePixel = 0
+ToggleButton.Position = UDim2.new(0, 10, 0.5, -50) -- Lado esquerdo, meio vertical
+ToggleButton.Size = UDim2.new(0, 60, 0, 60) -- Quadrado médio
+ToggleButton.Image = "https://i.imgur.com/rlc8OiB.png" -- Substitua pelo seu link da imagem
+
+ToggleButton.MouseButton1Click:Connect(function()
+    Window:Toggle() -- Abre ou fecha o menu
+end)
+
+-- Opcional: mudar opacidade no hover
+ToggleButton.MouseEnter:Connect(function()
+    ToggleButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+end)
+ToggleButton.MouseLeave:Connect(function()
+    ToggleButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+end)

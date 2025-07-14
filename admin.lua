@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 
 local allowedUsers = {
-    ["3811306935"] = "TETRA_ADM", -- IDs autorizados (adicione mais aqui)
+    ["3811306935"] = "TETRA_ADM", -- Substitua pelo seu ID
 }
 
 local Players = game:GetService("Players")
@@ -27,10 +27,9 @@ local Window = Rayfield:CreateWindow({
     }
 })
 
-if allowedUsers[userId] then
-    print("✅ Acesso autorizado para o usuário:", player.Name, "ID:", userId)
-else
-    print("❌ Acesso negado! ID:", userId)
+if not allowedUsers[userId] then
+    warn("❌ Acesso negado! ID:", userId)
+    return -- não permite abrir menu se não autorizado
 end
 
 local Tab = Window:CreateTab("👑 Admin", 4483362458)
@@ -41,37 +40,13 @@ Tab:CreateParagraph({
     Content = "Olá " .. player.Name .. "! Seu ID (".. userId .. ") foi autorizado!"
 })
 
-local function checarUsuarios()
-    local usuariosDetectados = {}
-    for _, p in pairs(Players:GetPlayers()) do
-        local character = p.Character
-        if character then
-            local flag = character:FindFirstChild("UsandoScriptTetra4")
-            if flag and flag.Value == true then
-                table.insert(usuariosDetectados, p.Name .. " (ID: " .. p.UserId .. ")")
-            end
-        end
-    end
-    if #usuariosDetectados == 0 then
+Tab:CreateButton({
+    Name = "📢 Mensagem Teste",
+    Callback = function()
         Rayfield:Notify({
-            Title = "ℹ️ Verificação Completa",
-            Content = "Nenhum usuário usando o script foi detectado.",
+            Title = "✅ Sucesso",
+            Content = "Você tem acesso ao painel admin!",
             Duration = 5
         })
-    else
-        for _, info in ipairs(usuariosDetectados) do
-            Rayfield:Notify({
-                Title = "🔔 Usuário Detectado",
-                Content = "Usuário usando o script: " .. info,
-                Duration = 5
-            })
-        end
-    end
-end
-
-Tab:CreateButton({
-    Name = "🔍 Verificar usuários usando script",
-    Callback = function()
-        checarUsuarios()
     end
 })
