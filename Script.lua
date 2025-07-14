@@ -1,28 +1,30 @@
 local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
+
+-- Certifique-se que o RemoteEvent existe, se não, cria (não funciona no cliente, mas ok)
+local usoEvent = ReplicatedStorage:FindFirstChild("PlayerUsageEvent")
+if not usoEvent then
+    -- Normalmente só o server cria, mas só pra garantir
+    usoEvent = Instance.new("RemoteEvent")
+    usoEvent.Name = "PlayerUsageEvent"
+    usoEvent.Parent = ReplicatedStorage
+end
+
+-- Função para avisar o servidor que está usando o script
+local function avisarUso()
+    usoEvent:FireServer()
+end
+
+-- Chama para avisar assim que o script rodar
+avisarUso()
 
 local function getHumanoid()
     local character = player.Character or player.CharacterAdded:Wait()
     return character:WaitForChild("Humanoid")
 end
-
--- Marcar que o player está usando o script
-local function marcarUso()
-    local character = player.Character or player.CharacterAdded:Wait()
-    local flag = character:FindFirstChild("UsandoScriptTetra4")
-    if not flag then
-        flag = Instance.new("BoolValue")
-        flag.Name = "UsandoScriptTetra4"
-        flag.Value = true
-        flag.Parent = character
-    else
-        flag.Value = true
-    end
-end
-
-marcarUso()
 
 local Window = Rayfield:CreateWindow({
     Name = "Tetra4 🛠️",

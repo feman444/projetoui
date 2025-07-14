@@ -42,17 +42,29 @@ Tab:CreateParagraph({
 })
 
 local function checarUsuarios()
+    local usuariosDetectados = {}
     for _, p in pairs(Players:GetPlayers()) do
         local character = p.Character
         if character then
             local flag = character:FindFirstChild("UsandoScriptTetra4")
             if flag and flag.Value == true then
-                Rayfield:Notify({
-                    Title = "🔔 Usuário Detectado",
-                    Content = "Usuário usando o script: "..p.Name.." (ID: "..p.UserId..")",
-                    Duration = 5
-                })
+                table.insert(usuariosDetectados, p.Name .. " (ID: " .. p.UserId .. ")")
             end
+        end
+    end
+    if #usuariosDetectados == 0 then
+        Rayfield:Notify({
+            Title = "ℹ️ Verificação Completa",
+            Content = "Nenhum usuário usando o script foi detectado.",
+            Duration = 5
+        })
+    else
+        for _, info in ipairs(usuariosDetectados) do
+            Rayfield:Notify({
+                Title = "🔔 Usuário Detectado",
+                Content = "Usuário usando o script: " .. info,
+                Duration = 5
+            })
         end
     end
 end
