@@ -7,7 +7,7 @@ local Window = redzlib:MakeWindow({
 })
 
 -- Aba Player
-local TabPlayer = Window:MakeTab({"Player", "4483362458"}) -- ícone pode ser ID ou string
+local TabPlayer = Window:MakeTab({"👤 Player", "4483362458"})
 
 local velocidadeAtiva = false
 local velocidadeValor = 16
@@ -106,7 +106,7 @@ TabPlayer:AddButton({
 })
 
 -- Aba Avatar
-local TabAvatar = Window:MakeTab({"Avatar", "4483362458"})
+local TabAvatar = Window:MakeTab({"🧍 Avatar", "4483362458"})
 
 TabAvatar:AddSection({"🎨 Funções"})
 
