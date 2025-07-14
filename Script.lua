@@ -2,28 +2,30 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
 	Name = "MATHEUS X HUB",
-	LoadingTitle = "Carregando Script...",
-	LoadingSubtitle = "CARREGADO.",
+	LoadingTitle = "MATHEUS X HUB",
+	LoadingSubtitle = "Carregando...",
 	ConfigurationSaving = { Enabled = false },
 	Theme = "Default",
 	ToggleUIKeybind = Enum.KeyCode.K
 })
 
+local function getHumanoid()
+	local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+	return character:WaitForChild("Humanoid")
+end
+
 local TabPlayer = Window:CreateTab("Player", 4483362458)
 TabPlayer:CreateSection("Funções")
 
-local velocidadeAtiva = false
-local velocidadeValor = 16
+local velocidadeAtiva, velocidadeValor = false, 16
 
 TabPlayer:CreateToggle({
 	Name = "Ativar Velocidade",
 	CurrentValue = false,
 	Callback = function(v)
 		velocidadeAtiva = v
-		local humanoid = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
-		if humanoid then
-			humanoid.WalkSpeed = v and velocidadeValor or 16
-		end
+		local humanoid = getHumanoid()
+		humanoid.WalkSpeed = v and velocidadeValor or 16
 	end
 })
 
@@ -36,10 +38,60 @@ TabPlayer:CreateSlider({
 	Callback = function(v)
 		velocidadeValor = v
 		if velocidadeAtiva then
-			local humanoid = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
-			if humanoid then
-				humanoid.WalkSpeed = velocidadeValor
-			end
+			local humanoid = getHumanoid()
+			humanoid.WalkSpeed = velocidadeValor
+		end
+	end
+})
+
+local puloAtivo, puloValor = false, 50
+
+TabPlayer:CreateToggle({
+	Name = "Ativar Pulo",
+	CurrentValue = false,
+	Callback = function(v)
+		puloAtivo = v
+		local humanoid = getHumanoid()
+		humanoid.JumpPower = v and puloValor or 50
+	end
+})
+
+TabPlayer:CreateSlider({
+	Name = "Pulo",
+	Range = {0, 250},
+	Increment = 1,
+	Suffix = " JumpPower",
+	CurrentValue = 50,
+	Callback = function(v)
+		puloValor = v
+		if puloAtivo then
+			local humanoid = getHumanoid()
+			humanoid.JumpPower = puloValor
+		end
+	end
+})
+
+local noclipAtivo = false
+
+TabPlayer:CreateToggle({
+	Name = "Ativar Noclip",
+	CurrentValue = false,
+	Callback = function(v)
+		noclipAtivo = v
+		if v then
+			task.spawn(function()
+				while noclipAtivo do
+					local character = game.Players.LocalPlayer.Character
+					if character then
+						for _, part in ipairs(character:GetDescendants()) do
+							if part:IsA("BasePart") then
+								part.CanCollide = false
+							end
+						end
+					end
+					task.wait(0.1)
+				end
+			end)
 		end
 	end
 })
@@ -50,56 +102,46 @@ TabAvatar:CreateSection("Funções")
 local remoteCorpo = game:GetService("ReplicatedStorage").Remotes.ChangeBodyColor
 local remoteNome = game:GetService("ReplicatedStorage").RE:FindFirstChild("1RPNam1eColo1r")
 
-local loopCorpo, loopNome
-
 local coresCorpo = {
 	"Really red", "Lime green", "Bright blue", "New Yeller",
 	"Royal purple", "Deep orange", "Medium stone grey",
 	"Hot pink", "Earth green"
 }
 
-local coresNome = {
-	Color3.fromRGB(255, 0, 0), Color3.fromRGB(0, 255, 0),
-	Color3.fromRGB(0, 0, 255), Color3.fromRGB(255, 255, 0),
-	Color3.fromRGB(128, 0, 128), Color3.fromRGB(255, 165, 0)
-}
+local loopCorpoAtivo, loopNomeAtivo = false, false
 
 TabAvatar:CreateToggle({
 	Name = "Trocar Cor do Corpo",
 	CurrentValue = false,
 	Callback = function(v)
+		loopCorpoAtivo = v
 		if v then
-			loopCorpo = task.spawn(function()
-				while true do
+			task.spawn(function()
+				while loopCorpoAtivo do
 					for _, cor in ipairs(coresCorpo) do
-						if not loopCorpo or not v then return end
+						if not loopCorpoAtivo then break end
 						remoteCorpo:FireServer(cor)
 						task.wait(0.3)
 					end
 				end
 			end)
-		else
-			if loopCorpo then task.cancel(loopCorpo) end
 		end
 	end
 })
 
 TabAvatar:CreateToggle({
-	Name = "Trocar Cor do Nome RP",
+	Name = "Trocar Cor do Nome RP (RGB)",
 	CurrentValue = false,
 	Callback = function(v)
+		loopNomeAtivo = v
 		if v then
-			loopNome = task.spawn(function()
-				while true do
-					for _, cor in ipairs(coresNome) do
-						if not loopNome or not v then return end
-						remoteNome:FireServer("PickingRPNameColor", cor)
-						task.wait(0.3)
-					end
+			task.spawn(function()
+				while loopNomeAtivo do
+					local cor = Color3.fromHSV((tick() % 5) / 5, 1, 1)
+					remoteNome:FireServer("PickingRPNameColor", cor)
+					task.wait(0.1)
 				end
 			end)
-		else
-			if loopNome then task.cancel(loopNome) end
 		end
 	end
 })
