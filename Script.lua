@@ -9,27 +9,25 @@ local function getHumanoid()
 end
 
 local Window = Rayfield:CreateWindow({
-    Name = "Tetra4 🛠️",
-    LoadingTitle = "🔄 Carregando Menu Tetra4...",
-    LoadingSubtitle = "💻 Script otimizado",
+    Name = "🌌 Tetra4 | Hub Completo",
+    LoadingTitle = "🚀 Carregando Tetra4 Hub...",
+    LoadingSubtitle = "✨ Melhor experiência mobile",
     ConfigurationSaving = { Enabled = false },
     Theme = "Default",
     ToggleUIKeybind = Enum.KeyCode.K
 })
 
--- 👤 Aba Player
-local TabPlayer = Window:CreateTab("👤 Player", 4483362458)
-TabPlayer:CreateSection("🎮 Funções de Movimento")
+-- 🎮 Player
+local TabPlayer = Window:CreateTab("🚶 Player", 4483362458)
+TabPlayer:CreateSection("🕹️ Movimentação e Agilidade")
 
--- Velocidade
 local velocidadeAtiva, velocidadeValor = false, 16
 TabPlayer:CreateToggle({
-    Name = "🏃‍♂️ Velocidade",
+    Name = "💨 Super Velocidade",
     CurrentValue = false,
     Callback = function(v)
         velocidadeAtiva = v
-        local humanoid = getHumanoid()
-        humanoid.WalkSpeed = v and velocidadeValor or 16
+        getHumanoid().WalkSpeed = v and velocidadeValor or 16
     end
 })
 TabPlayer:CreateSlider({
@@ -45,10 +43,9 @@ TabPlayer:CreateSlider({
     end
 })
 
--- Pulo
 local puloAtivo, puloValor = false, 50
 TabPlayer:CreateToggle({
-    Name = "🦘 Pulo",
+    Name = "🚀 Pulo Super Alto",
     CurrentValue = false,
     Callback = function(v)
         puloAtivo = v
@@ -56,7 +53,7 @@ TabPlayer:CreateToggle({
     end
 })
 TabPlayer:CreateSlider({
-    Name = "🎚️ Definir Pulo",
+    Name = "📏 Ajustar Altura do Pulo",
     Range = {0, 250},
     Increment = 1,
     CurrentValue = 50,
@@ -68,10 +65,9 @@ TabPlayer:CreateSlider({
     end
 })
 
--- Noclip
 local noclipAtivo = false
 TabPlayer:CreateToggle({
-    Name = "🚫 Noclip",
+    Name = "🛸 Noclip (Fantasma)",
     CurrentValue = false,
     Callback = function(v)
         noclipAtivo = v
@@ -91,15 +87,15 @@ TabPlayer:CreateToggle({
 })
 
 TabPlayer:CreateButton({
-    Name = "🔄 Reentrar no Server",
+    Name = "🔄 Reentrar no Servidor",
     Callback = function()
         game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, player)
     end
 })
 
--- 🧍 Aba Avatar
-local TabAvatar = Window:CreateTab("🧍 Avatar", 4483362458)
-TabAvatar:CreateSection("🎨 Edição Visual")
+-- 🎨 Avatar
+local TabAvatar = Window:CreateTab("🎨 Avatar", 4483362458)
+TabAvatar:CreateSection("🎭 Personalização Visual")
 
 local remoteCorpo = game:GetService("ReplicatedStorage").Remotes.ChangeBodyColor
 local remoteNome = game:GetService("ReplicatedStorage").RE:FindFirstChild("1RPNam1eColo1r")
@@ -107,7 +103,7 @@ local coresCorpo = {"Really red", "Lime green", "Bright blue", "New Yeller", "Ro
 
 local loopCorpoAtivo = false
 TabAvatar:CreateToggle({
-    Name = "🌈 Trocar Cor do Corpo",
+    Name = "🌈 Loop Cor do Corpo",
     CurrentValue = false,
     Callback = function(v)
         loopCorpoAtivo = v
@@ -127,7 +123,7 @@ TabAvatar:CreateToggle({
 
 local loopNomeAtivo = false
 TabAvatar:CreateToggle({
-    Name = "🌈 Nome RGB",
+    Name = "💡 Nome RGB Animado",
     CurrentValue = false,
     Callback = function(v)
         loopNomeAtivo = v
@@ -138,6 +134,68 @@ TabAvatar:CreateToggle({
                     task.wait(0.1)
                 end
             end)
+        end
+    end
+})
+
+-- 🃏 Troll
+local TabTroll = Window:CreateTab("🃏 Troll", 4483362458)
+TabTroll:CreateSection("😈 Trollar Players Facilmente")
+
+local target = nil
+TabTroll:CreateDropdown({
+    Name = "🎯 Escolher Jogador-Alvo",
+    Options = (function()
+        local list = {}
+        for _, p in ipairs(Players:GetPlayers()) do
+            if p ~= player then
+                table.insert(list, p.Name)
+            end
+        end
+        return list
+    end)(),
+    CurrentOption = nil,
+    Callback = function(option)
+        target = Players:FindFirstChild(option)
+        Rayfield:Notify({
+            Title = "🎯 Alvo Selecionado",
+            Content = "Agora mirando em: "..option,
+            Duration = 5
+        })
+    end
+})
+
+TabTroll:CreateButton({
+    Name = "📌 Teleportar para Alvo",
+    Callback = function()
+        if target and target.Character then
+            player.Character.HumanoidRootPart.CFrame = target.Character.HumanoidRootPart.CFrame + Vector3.new(0,2,0)
+            Rayfield:Notify({
+                Title = "✅ Teleportado com Sucesso",
+                Content = "Você foi até "..target.Name,
+                Duration = 5
+            })
+        end
+    end
+})
+
+local viewAtivo = false
+TabTroll:CreateToggle({
+    Name = "👁️‍🗨️ View Jogador Alvo",
+    CurrentValue = false,
+    Callback = function(v)
+        viewAtivo = v
+        local cam = workspace.CurrentCamera
+        if v and target and target.Character then
+            task.spawn(function()
+                while viewAtivo and target and target.Character do
+                    cam.CameraSubject = target.Character.Humanoid
+                    task.wait()
+                end
+                cam.CameraSubject = player.Character.Humanoid
+            end)
+        else
+            cam.CameraSubject = player.Character.Humanoid
         end
     end
 })
