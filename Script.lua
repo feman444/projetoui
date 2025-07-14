@@ -1,5 +1,4 @@
 local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
-
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
@@ -168,8 +167,8 @@ TabTroll:CreateDropdown({
 TabTroll:CreateButton({
     Name = "📌 Teleportar para Alvo",
     Callback = function()
-        if target and target.Character then
-            player.Character.HumanoidRootPart.CFrame = target.Character.HumanoidRootPart.CFrame + Vector3.new(0,2,0)
+        if target and target.Character and target.Character:FindFirstChild("HumanoidRootPart") then
+            player.Character:FindFirstChild("HumanoidRootPart").CFrame = target.Character.HumanoidRootPart.CFrame + Vector3.new(0,2,0)
             Rayfield:Notify({
                 Title = "✅ Teleportado com Sucesso",
                 Content = "Você foi até "..target.Name,
@@ -186,9 +185,9 @@ TabTroll:CreateToggle({
     Callback = function(v)
         viewAtivo = v
         local cam = workspace.CurrentCamera
-        if v and target and target.Character then
+        if v and target and target.Character and target.Character:FindFirstChild("Humanoid") then
             task.spawn(function()
-                while viewAtivo and target and target.Character do
+                while viewAtivo and target and target.Character and target.Character:FindFirstChild("Humanoid") do
                     cam.CameraSubject = target.Character.Humanoid
                     task.wait()
                 end
