@@ -1,0 +1,39 @@
+-- (Opcional) Ativa modo seguro do Rayfield
+getgenv().SecureMode = true
+
+-- Carrega o Rayfield UI
+local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/UI-Interface/CustomFIeld/main/RayField.lua"))()
+
+-- Cria a janela principal
+local Window = Rayfield:CreateWindow({
+	Name = "Interface de Teste",
+	LoadingTitle = "Carregando...",
+	LoadingSubtitle = "por Você :)",
+	ConfigurationSaving = {
+		Enabled = false -- Salvar configurações locais (true para ativar depois)
+	},
+	Discord = {
+		Enabled = false -- Ativar integração com Discord
+	},
+	KeySystem = false, -- Ativar sistema de chave (true se quiser segurança)
+	Theme = "Default", -- Estilos: Default, Light, Aqua, Jester, Crimson, etc.
+	ToggleUIKeybind = Enum.KeyCode.K -- Tecla para abrir/fechar UI
+})
+
+-- Cria uma aba
+local MainTab = Window:CreateTab("Principal", 4483362458) -- Nome e ícone (ID opcional)
+
+-- Cria uma seção dentro da aba
+local MainSection = MainTab:CreateSection("Funções")
+
+-- Cria um botão de teste
+MainTab:CreateButton({
+	Name = "Clique para testar",
+	Callback = function()
+		Rayfield:Notify({
+			Title = "Funcionando!",
+			Content = "Você clicou no botão.",
+			Duration = 4
+		})
+	end
+})
