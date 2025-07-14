@@ -4,60 +4,39 @@ local Window = Rayfield:CreateWindow({
 	Name = "MATHEUS X HUB",
 	LoadingTitle = "Carregando Script...",
 	LoadingSubtitle = "CARREGADO.",
-	ConfigurationSaving = {
-		Enabled = false
-	},
-	Discord = {
-		Enabled = false
-	},
+	ConfigurationSaving = { Enabled = false },
+	Discord = { Enabled = false },
 	KeySystem = false,
 	Theme = "Default",
 	ToggleUIKeybind = Enum.KeyCode.K
 })
 
--- 🧩 Aba Principal
 local Tab = Window:CreateTab("Principal", 4483362458)
-local Section = Tab:CreateSection("Funções")
+Tab:CreateSection("Funções")
 
--- 🔘 Botão de Teste
-Tab:CreateButton({
-	Name = "Testar Botão",
-	Callback = function()
-		Rayfield:Notify({
-			Title = "Funcionando!",
-			Content = "Você clicou no botão.",
-			Duration = 4
-		})
-	end
-})
-
--- ✅ Toggle de troca de cor automática
-local trocandoCor = false
-local trocador
+local ativo = false
+local loop
 
 Tab:CreateToggle({
-	Name = "Trocar Cor do Personagem",
+	Name = "RGB COLOR",
 	CurrentValue = false,
-	Callback = function(Value)
-		trocandoCor = Value
-		if trocandoCor then
-			trocador = task.spawn(function()
-				local plr = game.Players.LocalPlayer
-				while trocandoCor and plr and plr.Character do
-					for _, part in pairs(plr.Character:GetDescendants()) do
-						if part:IsA("BasePart") and part.Name ~= "HumanoidRootPart" then
-							part.Color = Color3.new(math.random(), math.random(), math.random())
+	Callback = function(v)
+		ativo = v
+		if ativo then
+			loop = task.spawn(function()
+				local p = game.Players.LocalPlayer
+				while ativo and p.Character do
+					local corUnica = Color3.new(math.random(), math.random(), math.random())
+					for _, parte in pairs(p.Character:GetDescendants()) do
+						if parte:IsA("BasePart") and parte.Name ~= "HumanoidRootPart" then
+							parte.Color = corUnica
 						end
 					end
-					wait(0.3) -- Intervalo entre as trocas
+					wait(0.3)
 				end
 			end)
-		else
-			if trocador then
-				task.cancel(trocador)
-			end
+		elseif loop then
+			task.cancel(loop)
 		end
 	end
 })
-
-print("hello world");
