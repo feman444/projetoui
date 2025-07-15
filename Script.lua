@@ -16,7 +16,7 @@ local Window = redzlib:MakeWindow({
 
 Window:AddMinimizeButton({
     Button = {
-        Image = redzlib:GetIcon("rbxassetid://88328937608580"),
+        Image = redzlib:GetIcon("rbxassetid://16814451728"),
         Size = UDim2.fromOffset(60, 60),
         BackgroundTransparency = 0
     },
@@ -27,11 +27,20 @@ Window:AddMinimizeButton({
 local TabPlayer = Window:MakeTab({"🚶 Player", "rbxassetid://4483362458"})
 TabPlayer:AddSection({"🕹️ Movimentação e Agilidade"})
 
-local velocidadeAtiva = false
 TabPlayer:AddToggle({
     Name = "💨 Super Velocidade",
-    Callback = function(v)
-        velocidadeAtiva = v
+    Flag = "SuperVelocidade",
+    Callback = function(value)
+        getgenv().activeSpeed = value
+        if not value then
+            Character:WaitForChild("Humanoid").WalkSpeed = 16
+        end
+        while getgenv().activeSpeed do
+            if getgenv().valueSpeed then
+                Character:WaitForChild("Humanoid").WalkSpeed = getgenv().valueSpeed
+            end
+            task.wait()
+        end
     end
 })
 
@@ -41,17 +50,24 @@ TabPlayer:AddSlider({
     Max = 100,
     Default = 16,
     Callback = function(valor)
-        if velocidadeAtiva then
-            Character:WaitForChild("Humanoid").WalkSpeed = valor
-        end
+        getgenv().valueSpeed = valor
     end
 })
 
-local puloAtivo = false
 TabPlayer:AddToggle({
     Name = "🚀 Pulo Super Alto",
-    Callback = function(v)
-        puloAtivo = v
+    Flag = "PuloSuper",
+    Callback = function(value)
+        getgenv().activeJumpPower = value
+        if not value then
+            Character:WaitForChild("Humanoid").JumpPower = 50
+        end
+        while getgenv().activeJumpPower do
+            if getgenv().valueJumpPower then
+                Character:WaitForChild("Humanoid").JumpPower = getgenv().valueJumpPower
+            end
+            task.wait()
+        end
     end
 })
 
@@ -61,9 +77,7 @@ TabPlayer:AddSlider({
     Max = 250,
     Default = 50,
     Callback = function(valor)
-        if puloAtivo then
-            Character:WaitForChild("Humanoid").JumpPower = valor
-        end
+        getgenv().valueJumpPower = valor
     end
 })
 
@@ -72,7 +86,7 @@ TabPlayer:AddToggle({
     Name = "🛸 Noclip (Fantasma)",
     Callback = function(v)
         noclipAtivo = v
-        if noclipAtivo then
+        if v then
             task.spawn(function()
                 while noclipAtivo do
                     for _, part in ipairs(Character:GetDescendants()) do
@@ -108,7 +122,7 @@ TabAvatar:AddToggle({
     Name = "🌈 Loop Cor do Corpo",
     Callback = function(state)
         loopCorpo = state
-        if loopCorpo then
+        if state then
             task.spawn(function()
                 while loopCorpo do
                     for _, cor in ipairs(cores) do
@@ -129,7 +143,7 @@ TabAvatar:AddToggle({
     Name = "💡 Nome RGB Animado",
     Callback = function(state)
         loopNome = state
-        if loopNome then
+        if state then
             task.spawn(function()
                 while loopNome do
                     if game:GetService("ReplicatedStorage").RE:FindFirstChild("1RPNam1eColo1r") then
@@ -152,7 +166,6 @@ local DropdownPlayers = TabTroll:AddDropdown({
     Options = {},
     Callback = function(nome)
         playerSelecionado = nome
-        redzlib:Notify("🎯 Jogador Alvo", "Alvo selecionado: " .. nome, 5)
     end
 })
 
@@ -208,7 +221,7 @@ TabCasas:AddToggle({
     Name = "🚫 Auto AntBan (BannedBlock)",
     Callback = function(state)
         antBanAtivo = state
-        if antBanAtivo then
+        if state then
             task.spawn(function()
                 while antBanAtivo do
                     for _, v in ipairs(workspace:GetDescendants()) do
