@@ -156,6 +156,31 @@ TabAvatar:AddToggle({
     end
 })
 
+-- Nova função: Bio Colorida
+local loopBio = false
+TabAvatar:AddToggle({
+    Name = "🌈 Bio Colorida",
+    Callback = function(state)
+        loopBio = state
+        if state then
+            task.spawn(function()
+                while loopBio do
+                    local args = {
+                        [1] = "PickingRPBioColor",
+                        [2] = Color3.fromHSV((tick() % 5) / 5, 1, 1)
+                    }
+                    local repStorage = game:GetService("ReplicatedStorage")
+                    local re = repStorage:FindFirstChild("RE")
+                    if re and re:FindFirstChild("1RPNam1eColo1r") then
+                        re["1RPNam1eColo1r"]:FireServer(unpack(args))
+                    end
+                    task.wait(0.1)
+                end
+            end)
+        end
+    end
+})
+
 -- 🃏 Troll
 local TabTroll = Window:MakeTab({"🃏 Troll", "rbxassetid://4483362458"})
 TabTroll:AddSection({"😈 Trollar Players Facilmente"})
