@@ -156,23 +156,19 @@ TabAvatar:AddToggle({
     end
 })
 
--- Nova função: Bio Colorida
-local loopBio = false
+-- Nova função Bio Colorida
 TabAvatar:AddToggle({
-    Name = "🌈 Bio Colorida",
+    Name = "🧬 Bio Colorida",
     Callback = function(state)
-        loopBio = state
         if state then
             task.spawn(function()
-                while loopBio do
+                while state do
                     local args = {
                         [1] = "PickingRPBioColor",
                         [2] = Color3.fromHSV((tick() % 5) / 5, 1, 1)
                     }
-                    local repStorage = game:GetService("ReplicatedStorage")
-                    local re = repStorage:FindFirstChild("RE")
-                    if re and re:FindFirstChild("1RPNam1eColo1r") then
-                        re["1RPNam1eColo1r"]:FireServer(unpack(args))
+                    if game:GetService("ReplicatedStorage").RE:FindFirstChild("1RPNam1eColo1r") then
+                        game:GetService("ReplicatedStorage").RE["1RPNam1eColo1r"]:FireServer(unpack(args))
                     end
                     task.wait(0.1)
                 end
@@ -264,3 +260,209 @@ TabCasas:AddToggle({
 -- 🚗 Carros
 local TabCarros = Window:MakeTab({"🚗 Carros", "rbxassetid://4483362458"})
 TabCarros:AddSection({"🚘 Personalização e Hacks de Carros"})
+
+-- 👓 Chams (ESPs)
+local TabChams = Window:MakeTab({"👓 Chams (ESPs)", "rbxassetid://4483362458"})
+TabChams:AddSection({"✨ Personalização de ESP"})
+
+local RunService = game:GetService("RunService")
+local Camera = workspace.CurrentCamera
+
+local Highlights = {}
+local Tracers = {}
+local Boxes = {}
+local NameTags = {}
+
+local espPlayersActive = false
+local espTracersActive = false
+local espBoxesActive = false
+
+local function ClearESP()
+    for _, hl in pairs(Highlights) do
+        hl:Destroy()
+    end
+    Highlights = {}
+
+    for _, line in pairs(Tracers) do
+        line:Remove()
+    end
+    Tracers = {}
+
+    for _, box in pairs(Boxes) do
+        box:Remove()
+    end
+    Boxes = {}
+
+    for _, nameTag in pairs(NameTags) do
+        nameTag:Destroy()
+    end
+    NameTags = {}
+end
+
+local function CreateBox()
+    local box = Drawing.new("Square")
+    box.Color = Color3.new(1, 0.5, 0) -- laranja Arsenal style
+    box.Thickness = 1.5
+    box.Filled = false
+    box.Transparency = 1
+    return box
+end
+
+local function CreateTracer()
+    local line = Drawing.new("Line")
+    line.Color = Color3.new(0, 1, 0)
+    line.Thickness = 1.5
+    line.Transparency = 1
+    return line
+end
+
+local function CreateNameTag(player)
+    local billboard = Instance.new("BillboardGui")
+    billboard.Name = "ESPNameTag"
+    billboard.Adornee = player.Character and player.Character:FindFirstChild("Head")
+    billboard.Size = UDim2.new(0, 100, 0, 25)
+    billboard.StudsOffset = Vector3.new(0, 2.5, 0)
+    billboard.AlwaysOnTop = true
+
+    local textLabel = Instance.new("TextLabel", billboard)
+    textLabel.BackgroundTransparency = 1
+    textLabel.Size = UDim2.new(1, 0, 1, 0)
+    textLabel.Text = player.Name
+    textLabel.TextColor3 = Color3.new(1, 0.5, 0) -- laranja Arsenal style
+    textLabel.TextStrokeTransparency = 0
+    textLabel.Font = Enum.Font.SourceSansBold
+    textLabel.TextScaled = true
+
+    billboard.Parent = player.Character
+
+    return billboard
+end
+
+RunService.RenderStepped:Connect(function()
+    if not (espPlayersActive or espTracersActive or espBoxesActive) then
+        ClearESP()
+        return
+    end
+
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health > 0 then
+            local rootPart = player.Character.HumanoidRootPart
+            local pos, onScreen = Camera:WorldToViewportPoint(rootPart.Position)
+
+            if espPlayersActive then
+                -- Highlight
+                if not Highlights[player] then
+                    local highlight = Instance.new("Highlight")
+                    highlight.Adornee = player.Character
+                    highlight.FillColor = Color3.fromRGB(255, 165, 0)
+                    highlight.OutlineColor = Color3.fromRGB(255, 165, 0)
+                    highlight.Parent = workspace
+                    Highlights[player] = highlight
+                end
+                -- NameTag
+                if not NameTags[player] then
+                    local nameTag = CreateNameTag(player)
+                    NameTags[player] = nameTag
+                end
+            else
+                if Highlights[player] then
+                    Highlights[player]:Destroy()
+                    Highlights[player] = nil
+                end
+                if NameTags[player] then
+                    NameTags[player]:Destroy()
+                    NameTags[player] = nil
+                end
+            end
+
+            -- Tracers
+            if espTracersActive and onScreen then
+                if not Tracers[player] then
+                    Tracers[player] = CreateTracer()
+                end
+                local screenSize = Camera.ViewportSize
+                Tracers[player].From = Vector2.new(screenSize.X / 2, screenSize.Y)
+                Tracers[player].To = Vector2.new(pos.X, pos.Y)
+                Tracers[player].Visible = true
+            else
+                if Tracers[player] then
+                    Tracers[player].Visible = false
+                    Tracers[player]:Remove()
+                    Tracers[player] = nil
+                end
+            end
+
+            -- Boxes estilo Arsenal (retângulo simples)
+            if espBoxesActive and onScreen then
+                local head = player.Character:FindFirstChild("Head")
+                local root = player.Character:FindFirstChild("HumanoidRootPart")
+                if head and root then
+                    local headPos, headOnScreen = Camera:WorldToViewportPoint(head.Position + Vector3.new(0, 0.5, 0))
+                    local rootPos, rootOnScreen = Camera:WorldToViewportPoint(root.Position - Vector3.new(0, 3, 0))
+                    if headOnScreen and rootOnScreen then
+                        if not Boxes[player] then
+                            Boxes[player] = CreateBox()
+                        end
+                        local box = Boxes[player]
+                        local height = math.abs(headPos.Y - rootPos.Y)
+                        local width = height / 2 -- proporção de box estilo Arsenal
+                        box.Position = Vector2.new(headPos.X - width/2, headPos.Y)
+                        box.Size = Vector2.new(width, height)
+                        box.Visible = true
+                    else
+                        if Boxes[player] then
+                            Boxes[player].Visible = false
+                        end
+                    end
+                end
+            else
+                if Boxes[player] then
+                    Boxes[player].Visible = false
+                    Boxes[player]:Remove()
+                    Boxes[player] = nil
+                end
+            end
+        else
+            if Highlights[player] then
+                Highlights[player]:Destroy()
+                Highlights[player] = nil
+            end
+            if Tracers[player] then
+                Tracers[player]:Remove()
+                Tracers[player] = nil
+            end
+            if Boxes[player] then
+                Boxes[player]:Remove()
+                Boxes[player] = nil
+            end
+            if NameTags[player] then
+                NameTags[player]:Destroy()
+                NameTags[player] = nil
+            end
+        end
+    end
+end)
+
+TabChams:AddToggle({
+    Name = "🟠 ESP Players",
+    Callback = function(state)
+        espPlayersActive = state
+        if not state then ClearESP() end
+    end
+})
+
+TabChams:AddToggle({
+    Name = "🔵 ESP Tracers",
+    Callback = function(state)
+        espTracersActive = state
+        if not state then ClearESP() end
+    end
+})
+
+TabChams:AddToggle({
+    Name = "🟡 ESP Box (Estilo Arsenal)",
+    Callback = function(state)
+        espBoxesActive = state
+        if not state then ClearESP() end
+    end
+})
