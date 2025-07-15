@@ -156,13 +156,13 @@ TabAvatar:AddToggle({
     end
 })
 
--- Nova função Bio Colorida
+-- Nova função Bio Colorida (Emoji + lógica)
 TabAvatar:AddToggle({
-    Name = "🧬 Bio Colorida",
+    Name = "📝 Bio Colorida",
     Callback = function(state)
         if state then
             task.spawn(function()
-                while state do
+                while task.wait(0.2) and state do
                     local args = {
                         [1] = "PickingRPBioColor",
                         [2] = Color3.fromHSV((tick() % 5) / 5, 1, 1)
@@ -170,7 +170,6 @@ TabAvatar:AddToggle({
                     if game:GetService("ReplicatedStorage").RE:FindFirstChild("1RPNam1eColo1r") then
                         game:GetService("ReplicatedStorage").RE["1RPNam1eColo1r"]:FireServer(unpack(args))
                     end
-                    task.wait(0.1)
                 end
             end)
         end
@@ -271,7 +270,6 @@ local Camera = workspace.CurrentCamera
 local Highlights = {}
 local Tracers = {}
 local Boxes = {}
-local NameTags = {}
 
 local espPlayersActive = false
 local espTracersActive = false
@@ -292,17 +290,12 @@ local function ClearESP()
         box:Remove()
     end
     Boxes = {}
-
-    for _, nameTag in pairs(NameTags) do
-        nameTag:Destroy()
-    end
-    NameTags = {}
 end
 
 local function CreateBox()
     local box = Drawing.new("Square")
-    box.Color = Color3.new(1, 0.5, 0) -- laranja Arsenal style
-    box.Thickness = 1.5
+    box.Color = Color3.new(0, 1, 0)
+    box.Thickness = 2
     box.Filled = false
     box.Transparency = 1
     return box
@@ -314,28 +307,6 @@ local function CreateTracer()
     line.Thickness = 1.5
     line.Transparency = 1
     return line
-end
-
-local function CreateNameTag(player)
-    local billboard = Instance.new("BillboardGui")
-    billboard.Name = "ESPNameTag"
-    billboard.Adornee = player.Character and player.Character:FindFirstChild("Head")
-    billboard.Size = UDim2.new(0, 100, 0, 25)
-    billboard.StudsOffset = Vector3.new(0, 2.5, 0)
-    billboard.AlwaysOnTop = true
-
-    local textLabel = Instance.new("TextLabel", billboard)
-    textLabel.BackgroundTransparency = 1
-    textLabel.Size = UDim2.new(1, 0, 1, 0)
-    textLabel.Text = player.Name
-    textLabel.TextColor3 = Color3.new(1, 0.5, 0) -- laranja Arsenal style
-    textLabel.TextStrokeTransparency = 0
-    textLabel.Font = Enum.Font.SourceSansBold
-    textLabel.TextScaled = true
-
-    billboard.Parent = player.Character
-
-    return billboard
 end
 
 RunService.RenderStepped:Connect(function()
@@ -350,32 +321,21 @@ RunService.RenderStepped:Connect(function()
             local pos, onScreen = Camera:WorldToViewportPoint(rootPart.Position)
 
             if espPlayersActive then
-                -- Highlight
                 if not Highlights[player] then
                     local highlight = Instance.new("Highlight")
                     highlight.Adornee = player.Character
-                    highlight.FillColor = Color3.fromRGB(255, 165, 0)
-                    highlight.OutlineColor = Color3.fromRGB(255, 165, 0)
+                    highlight.FillColor = Color3.fromRGB(0, 255, 0)
+                    highlight.OutlineColor = Color3.fromRGB(0, 255, 0)
                     highlight.Parent = workspace
                     Highlights[player] = highlight
-                end
-                -- NameTag
-                if not NameTags[player] then
-                    local nameTag = CreateNameTag(player)
-                    NameTags[player] = nameTag
                 end
             else
                 if Highlights[player] then
                     Highlights[player]:Destroy()
                     Highlights[player] = nil
                 end
-                if NameTags[player] then
-                    NameTags[player]:Destroy()
-                    NameTags[player] = nil
-                end
             end
 
-            -- Tracers
             if espTracersActive and onScreen then
                 if not Tracers[player] then
                     Tracers[player] = CreateTracer()
@@ -392,27 +352,29 @@ RunService.RenderStepped:Connect(function()
                 end
             end
 
-            -- Boxes estilo Arsenal (retângulo simples)
             if espBoxesActive and onScreen then
-                local head = player.Character:FindFirstChild("Head")
-                local root = player.Character:FindFirstChild("HumanoidRootPart")
-                if head and root then
-                    local headPos, headOnScreen = Camera:WorldToViewportPoint(head.Position + Vector3.new(0, 0.5, 0))
-                    local rootPos, rootOnScreen = Camera:WorldToViewportPoint(root.Position - Vector3.new(0, 3, 0))
-                    if headOnScreen and rootOnScreen then
-                        if not Boxes[player] then
-                            Boxes[player] = CreateBox()
-                        end
-                        local box = Boxes[player]
-                        local height = math.abs(headPos.Y - rootPos.Y)
-                        local width = height / 2 -- proporção de box estilo Arsenal
-                        box.Position = Vector2.new(headPos.X - width/2, headPos.Y)
-                        box.Size = Vector2.new(width, height)
-                        box.Visible = true
-                    else
-                        if Boxes[player] then
-                            Boxes[player].Visible = false
-                        end
+                local size = Vector3.new(2, 5, 1)
+                local corners = {
+                    rootPart.Position + Vector3.new(-size.X/2, size.Y/2, -size.Z/2),
+                    rootPart.Position + Vector3.new(size.X/2, size.Y/2, -size.Z/2),
+                    rootPart.Position + Vector3.new(size.X/2, -size.Y/2, -size.Z/2),
+                    rootPart.Position + Vector3.new(-size.X/2, -size.Y/2, -size.Z/2),
+                }
+                if not Boxes[player] then
+                    Boxes[player] = CreateBox()
+                end
+                local topLeft, visibleTL = Camera:WorldToViewportPoint(corners[1])
+                local bottomRight, visibleBR = Camera:WorldToViewportPoint(corners[3])
+                if visibleTL and visibleBR then
+                    local box = Boxes[player]
+                    local width = (bottomRight.X - topLeft.X)
+                    local height = (bottomRight.Y - topLeft.Y)
+                    box.Position = Vector2.new(topLeft.X, topLeft.Y)
+                    box.Size = Vector2.new(width, height)
+                    box.Visible = true
+                else
+                    if Boxes[player] then
+                        Boxes[player].Visible = false
                     end
                 end
             else
@@ -435,16 +397,12 @@ RunService.RenderStepped:Connect(function()
                 Boxes[player]:Remove()
                 Boxes[player] = nil
             end
-            if NameTags[player] then
-                NameTags[player]:Destroy()
-                NameTags[player] = nil
-            end
         end
     end
 end)
 
 TabChams:AddToggle({
-    Name = "🟠 ESP Players",
+    Name = "🟢 ESP Players",
     Callback = function(state)
         espPlayersActive = state
         if not state then ClearESP() end
@@ -460,7 +418,7 @@ TabChams:AddToggle({
 })
 
 TabChams:AddToggle({
-    Name = "🟡 ESP Box (Estilo Arsenal)",
+    Name = "🟠 ESP Box",
     Callback = function(state)
         espBoxesActive = state
         if not state then ClearESP() end
