@@ -156,7 +156,7 @@ TabAvatar:AddToggle({
     end
 })
 
--- Nova função Bio Colorida (Emoji + lógica)
+-- Bio Colorida
 TabAvatar:AddToggle({
     Name = "📝 Bio Colorida",
     Callback = function(state)
@@ -270,6 +270,7 @@ local Camera = workspace.CurrentCamera
 local Highlights = {}
 local Tracers = {}
 local Boxes = {}
+local NameTags = {}
 
 local espPlayersActive = false
 local espTracersActive = false
@@ -290,6 +291,13 @@ local function ClearESP()
         box:Remove()
     end
     Boxes = {}
+
+    for _, nametag in pairs(NameTags) do
+        if nametag and nametag.Parent then
+            nametag:Destroy()
+        end
+    end
+    NameTags = {}
 end
 
 local function CreateBox()
@@ -309,6 +317,28 @@ local function CreateTracer()
     return line
 end
 
+local function CreateNameTag(player)
+    local billboard = Instance.new("BillboardGui")
+    billboard.Name = "Tetra4NameESP"
+    billboard.Adornee = player.Character:FindFirstChild("Head") or player.Character:FindFirstChild("HumanoidRootPart")
+    billboard.Size = UDim2.new(0, 100, 0, 30)
+    billboard.StudsOffset = Vector3.new(0, 2.5, 0)
+    billboard.AlwaysOnTop = true
+    billboard.Parent = player.Character
+
+    local textLabel = Instance.new("TextLabel")
+    textLabel.BackgroundTransparency = 1
+    textLabel.Size = UDim2.new(1, 0, 1, 0)
+    textLabel.Text = player.Name
+    textLabel.TextColor3 = Color3.fromRGB(0, 162, 255)
+    textLabel.TextStrokeTransparency = 0
+    textLabel.TextScaled = true
+    textLabel.Font = Enum.Font.SourceSansBold
+    textLabel.Parent = billboard
+
+    return billboard
+end
+
 RunService.RenderStepped:Connect(function()
     if not (espPlayersActive or espTracersActive or espBoxesActive) then
         ClearESP()
@@ -324,15 +354,22 @@ RunService.RenderStepped:Connect(function()
                 if not Highlights[player] then
                     local highlight = Instance.new("Highlight")
                     highlight.Adornee = player.Character
-                    highlight.FillColor = Color3.fromRGB(0, 255, 0)
-                    highlight.OutlineColor = Color3.fromRGB(0, 255, 0)
+                    highlight.FillColor = Color3.fromRGB(0, 162, 255)
+                    highlight.OutlineColor = Color3.fromRGB(0, 162, 255)
                     highlight.Parent = workspace
                     Highlights[player] = highlight
+                end
+                if not NameTags[player] then
+                    NameTags[player] = CreateNameTag(player)
                 end
             else
                 if Highlights[player] then
                     Highlights[player]:Destroy()
                     Highlights[player] = nil
+                end
+                if NameTags[player] then
+                    NameTags[player]:Destroy()
+                    NameTags[player] = nil
                 end
             end
 
@@ -396,6 +433,10 @@ RunService.RenderStepped:Connect(function()
             if Boxes[player] then
                 Boxes[player]:Remove()
                 Boxes[player] = nil
+            end
+            if NameTags[player] then
+                NameTags[player]:Destroy()
+                NameTags[player] = nil
             end
         end
     end
