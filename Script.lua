@@ -2,6 +2,8 @@ local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/tlred
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Remotes = ReplicatedStorage:WaitForChild("Remotes")
 
 if shared.connectCharacter then shared.connectCharacter:Disconnect() end
 shared.connectCharacter = LocalPlayer.CharacterAdded:Connect(function(newCharacter)
@@ -115,6 +117,137 @@ end})
 local TabAvatar = Window:MakeTab({"🎨 Avatar", "rbxassetid://4483362458"})
 TabAvatar:AddSection({"🎭 Personalização Visual"})
 
+-- Sistema de cópia de avatar
+local avatarTarget = ""
+local DropdownAvatar = TabAvatar:AddDropdown({
+    Name = "👤 Selecionar Jogador",
+    Options = {},
+    Callback = function(nome)
+        avatarTarget = nome
+    end
+})
+
+local function AtualizarListaAvatar()
+    local lista = {}
+    for _, p in ipairs(Players:GetPlayers()) do
+        if p ~= LocalPlayer then
+            table.insert(lista, p.Name)
+        end
+    end
+    DropdownAvatar:Set(lista)
+end
+
+AtualizarListaAvatar()
+
+TabAvatar:AddButton({"🔄 Atualizar Lista", AtualizarListaAvatar})
+
+TabAvatar:AddButton({
+    Name = "📋 Copiar Avatar",
+    Callback = function()
+        if not avatarTarget or avatarTarget == "" then
+            redzlib:Notify("❌ Erro", "Selecione um jogador primeiro!", 3)
+            return
+        end
+        
+        local TPlayer = Players:FindFirstChild(avatarTarget)
+        if not TPlayer or not TPlayer.Character then
+            redzlib:Notify("❌ Erro", "Jogador não encontrado!", 3)
+            return
+        end
+
+        local LChar = Character
+        local LHumanoid = LChar:FindFirstChildOfClass("Humanoid")
+        local THumanoid = TPlayer.Character:FindFirstChildOfClass("Humanoid")
+
+        if not LHumanoid or not THumanoid then
+            redzlib:Notify("❌ Erro", "Humanoid não encontrado!", 3)
+            return
+        end
+
+        -- REINICIAR AVATAR LOCAL
+        local LDesc = LHumanoid:GetAppliedDescription()
+
+        -- Remover acessórios
+        for _, acc in ipairs(LDesc:GetAccessories(true)) do
+            if acc.AssetId and tonumber(acc.AssetId) then
+                Remotes.Wear:InvokeServer(tonumber(acc.AssetId))
+                task.wait(0.2)
+            end
+        end
+
+        -- Remover roupas e rosto
+        local itemsToRemove = {
+            LDesc.Shirt,
+            LDesc.Pants,
+            LDesc.Face
+        }
+
+        for _, item in ipairs(itemsToRemove) do
+            if tonumber(item) then
+                Remotes.Wear:InvokeServer(tonumber(item))
+                task.wait(0.2)
+            end
+        end
+
+        -- COPIAR DO ALVO
+        local PDesc = THumanoid:GetAppliedDescription()
+
+        -- Copiar partes do corpo
+        if Remotes:FindFirstChild("ChangeCharacterBody") then
+            local argsBody = {
+                [1] = {
+                    [1] = PDesc.Torso,
+                    [2] = PDesc.RightArm,
+                    [3] = PDesc.LeftArm,
+                    [4] = PDesc.RightLeg,
+                    [5] = PDesc.LeftLeg,
+                    [6] = PDesc.Head
+                }
+            }
+            Remotes.ChangeCharacterBody:InvokeServer(unpack(argsBody))
+            task.wait(0.5)
+        end
+
+        -- Copiar roupas e rosto
+        local itemsToCopy = {
+            PDesc.Shirt,
+            PDesc.Pants,
+            PDesc.Face
+        }
+
+        for _, item in ipairs(itemsToCopy) do
+            if tonumber(item) then
+                Remotes.Wear:InvokeServer(tonumber(item))
+                task.wait(0.3)
+            end
+        end
+
+        -- Copiar acessórios
+        for _, v in ipairs(PDesc:GetAccessories(true)) do
+            if v.AssetId and tonumber(v.AssetId) then
+                Remotes.Wear:InvokeServer(tonumber(v.AssetId))
+                task.wait(0.3)
+            end
+        end
+
+        -- Copiar cor da pele
+        local SkinColor = TPlayer.Character:FindFirstChild("Body Colors")
+        if SkinColor and Remotes:FindFirstChild("ChangeBodyColor") then
+            Remotes.ChangeBodyColor:FireServer(tostring(SkinColor.HeadColor))
+            task.wait(0.3)
+        end
+
+        -- Copiar animação ociosa
+        if tonumber(PDesc.IdleAnimation) and Remotes:FindFirstChild("Wear") then
+            Remotes.Wear:InvokeServer(tonumber(PDesc.IdleAnimation))
+            task.wait(0.3)
+        end
+
+        redzlib:Notify("✅ Sucesso", "Avatar copiado de "..avatarTarget, 5)
+    end
+})
+
+-- Configurações de cor
 local cores = {"Really red", "Lime green", "Bright blue", "New Yeller", "Royal purple", "Deep orange", "Medium stone grey", "Hot pink", "Earth green"}
 local loopCorpo = false
 
@@ -201,9 +334,7 @@ end
 
 AtualizarPlayers()
 
-TabTroll:AddButton({"🔃 Atualizar Lista de Players", function()
-    AtualizarPlayers()
-end})
+TabTroll:AddButton({"🔃 Atualizar Lista de Players", AtualizarPlayers})
 
 TabTroll:AddButton({"📌 Teleportar para Alvo", function()
     local alvo = Players:FindFirstChild(playerSelecionado)
