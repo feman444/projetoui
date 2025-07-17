@@ -1,4 +1,4 @@
-local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/Library/refs/heads/main/V5/Source.lua"))()
+ local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/Library/refs/heads/main/V5/Source.lua"))()
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
@@ -18,7 +18,7 @@ local Window = redzlib:MakeWindow({
 
 Window:AddMinimizeButton({
     Button = {
-        Image = redzlib:GetIcon("rbxassetid://16814451728"),
+        Image = redzlib:GetIcon("rbxassetid://108943939907781"),
         Size = UDim2.fromOffset(60, 60),
         BackgroundTransparency = 0
     },
@@ -27,7 +27,9 @@ Window:AddMinimizeButton({
 
 -- 🎮 Player
 local TabPlayer = Window:MakeTab({"🚶 Player", "rbxassetid://4483362458"})
-TabPlayer:AddSection({"🕹️ Movimentação e Agilidade"})
+
+-- 🕹️ MOVIMENTAÇÃO
+TabPlayer:AddSection({"🕹️ Movimentação"})
 
 TabPlayer:AddToggle({
     Name = "💨 Super Velocidade",
@@ -56,6 +58,9 @@ TabPlayer:AddSlider({
     end
 })
 
+-- 🦘 PULO
+TabPlayer:AddSection({"🦘 Pulo"})
+
 TabPlayer:AddToggle({
     Name = "🚀 Pulo Super Alto",
     Flag = "PuloSuper",
@@ -83,6 +88,9 @@ TabPlayer:AddSlider({
     end
 })
 
+-- 👻 FÍSICA
+TabPlayer:AddSection({"👻 Física"})
+
 local noclipAtivo = false
 TabPlayer:AddToggle({
     Name = "🛸 Noclip (Fantasma)",
@@ -109,15 +117,19 @@ TabPlayer:AddToggle({
     end
 })
 
+-- 🔧 UTILITÁRIOS
+TabPlayer:AddSection({"🔧 Utilitários"})
+
 TabPlayer:AddButton({"🔄 Reentrar no Servidor", function()
     game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, LocalPlayer)
 end})
 
 -- 🎨 Avatar
 local TabAvatar = Window:MakeTab({"🎨 Avatar", "rbxassetid://4483362458"})
-TabAvatar:AddSection({"🎭 Personalização Visual"})
 
--- Sistema de cópia de avatar
+-- 👤 CÓPIA DE AVATAR
+TabAvatar:AddSection({"👤 Copiar Avatar"})
+
 local avatarTarget = ""
 local DropdownAvatar = TabAvatar:AddDropdown({
     Name = "👤 Selecionar Jogador",
@@ -247,6 +259,9 @@ TabAvatar:AddButton({
     end
 })
 
+-- 🌈 EFEITOS VISUAIS
+TabAvatar:AddSection({"🌈 Efeitos Visuais"})
+
 -- Configurações de cor
 local cores = {"Really red", "Lime green", "Bright blue", "New Yeller", "Royal purple", "Deep orange", "Medium stone grey", "Hot pink", "Earth green"}
 local loopCorpo = false
@@ -311,7 +326,9 @@ TabAvatar:AddToggle({
 
 -- 🃏 Troll
 local TabTroll = Window:MakeTab({"🃏 Troll", "rbxassetid://4483362458"})
-TabTroll:AddSection({"😈 Trollar Players Facilmente"})
+
+-- 🎯 SELEÇÃO DE ALVO
+TabTroll:AddSection({"🎯 Seleção de Alvo"})
 
 local playerSelecionado = ""
 local DropdownPlayers = TabTroll:AddDropdown({
@@ -335,6 +352,9 @@ end
 AtualizarPlayers()
 
 TabTroll:AddButton({"🔃 Atualizar Lista de Players", AtualizarPlayers})
+
+-- 😈 AÇÕES DE TROLL
+TabTroll:AddSection({"😈 Ações de Troll"})
 
 TabTroll:AddButton({"📌 Teleportar para Alvo", function()
     local alvo = Players:FindFirstChild(playerSelecionado)
@@ -365,7 +385,9 @@ TabTroll:AddToggle({
 
 -- 🏠 Casas
 local TabCasas = Window:MakeTab({"🏠 Casas", "rbxassetid://4483362458"})
-TabCasas:AddSection({"🏡 Utilitários para Casas"})
+
+-- 🛡️ UTILITÁRIOS
+TabCasas:AddSection({"🛡️ Utilitários"})
 
 local antBanAtivo = false
 TabCasas:AddToggle({
@@ -389,11 +411,13 @@ TabCasas:AddToggle({
 
 -- 🚗 Carros
 local TabCarros = Window:MakeTab({"🚗 Carros", "rbxassetid://4483362458"})
-TabCarros:AddSection({"🚘 Personalização e Hacks de Carros"})
+-- (Sem funções definidas nesta aba)
 
 -- 👓 Chams (ESPs)
 local TabChams = Window:MakeTab({"👓 Chams (ESPs)", "rbxassetid://4483362458"})
-TabChams:AddSection({"✨ Personalização de ESP"})
+
+-- 👁️ VISUALIZAÇÃO
+TabChams:AddSection({"👁️ Visualização"})
 
 local RunService = game:GetService("RunService")
 local Camera = workspace.CurrentCamera
@@ -572,6 +596,9 @@ RunService.RenderStepped:Connect(function()
         end
     end
 end)
+
+-- 🟢 ESP TYPES
+TabChams:AddSection({"🟢 Tipos de ESP"})
 
 TabChams:AddToggle({
     Name = "🟢 ESP Players",
