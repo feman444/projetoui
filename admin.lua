@@ -1,27 +1,50 @@
 local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 
 local Window = Rayfield:CreateWindow({
-    Name = "🟣 Painel Chat Global",
-    LoadingTitle = "Chat via SendAsync",
-    ConfigurationSaving = { Enabled = false }
+    Name = "🟣 Painel Administrativo 🌐",
+    LoadingTitle = "🔐 Verificando Acesso...",
+    LoadingSubtitle = "Sistema Protegido por Key 🔑",
+    ConfigurationSaving = {
+        Enabled = false
+    },
+    Discord = {
+        Enabled = false
+    },
+    KeySystem = true, -- ATIVA O SISTEMA DE KEY DO RAYFIELD
+    KeySettings = {
+        Title = "🟣 Sistema de Key - Admin",
+        Subtitle = "Painel Exclusivo 🔑",
+        Note = "Entre no Discord: discord.gg/seuservidor",
+        FileName = "PainelAdmin_KEY",
+        SaveKey = true,
+        GrabKeyFromSite = false,
+        Key = {"ADMINKEY123"}, -- SUA KEY AQUI
+        Whitelist = {
+            Enabled = true,
+            List = {
+                12345678, -- SEU USERID
+                98765432, -- OUTRO USERID
+                11223344  -- ADICIONE AQUI
+            }
+        }
+    }
 })
 
-local Tab = Window:CreateTab("💬 Comandos Chat")
+local Tab = Window:CreateTab("📢 Moderação")
 
 local TextChatService = game:GetService("TextChatService")
 local Channel = TextChatService.TextChannels.RBXGeneral
 
--- Função para enviar mensagem no chat via SendAsync
 function EnviarChat(comando, player)
-    local mensagem = ";" .. comando .. " " .. player
+    local mensagem = ";"..comando.." "..player
     Channel:SendAsync(mensagem)
 end
 
 local playerAlvo = ""
 
 Tab:CreateInput({
-    Name = "🎯 Nome do Player",
-    PlaceholderText = "Ex: Renan",
+    Name = "🎯 Jogador Alvo",
+    PlaceholderText = "Exemplo: Renan44",
     RemoveTextAfterFocusLost = false,
     Callback = function(Text)
         playerAlvo = Text
@@ -29,40 +52,34 @@ Tab:CreateInput({
 })
 
 Tab:CreateButton({
-    Name = "🦶 Kick Player",
+    Name = "🚫 Expulsar Jogador",
     Callback = function()
         if playerAlvo ~= "" then
             EnviarChat("kick", playerAlvo)
         else
-            Rayfield:Notify({ Title = "❗ Aviso", Content = "Digite um player!", Duration = 4 })
+            Rayfield:Notify({ Title = "⚠️ Aviso", Content = "Digite um nome válido!", Duration = 4 })
         end
     end
 })
 
 Tab:CreateButton({
-    Name = "🛡️ Ban Player",
+    Name = "🔨 Banir Jogador",
     Callback = function()
         if playerAlvo ~= "" then
             EnviarChat("ban", playerAlvo)
         else
-            Rayfield:Notify({ Title = "❗ Aviso", Content = "Digite um player!", Duration = 4 })
+            Rayfield:Notify({ Title = "⚠️ Aviso", Content = "Digite um nome válido!", Duration = 4 })
         end
     end
 })
 
 Tab:CreateButton({
-    Name = "💨 Fly Player",
+    Name = "🕊️ Conceder Voo",
     Callback = function()
         if playerAlvo ~= "" then
             EnviarChat("fly", playerAlvo)
         else
-            Rayfield:Notify({ Title = "❗ Aviso", Content = "Digite um player!", Duration = 4 })
+            Rayfield:Notify({ Title = "⚠️ Aviso", Content = "Digite um nome válido!", Duration = 4 })
         end
     end
-})
-
-Rayfield:Notify({
-    Title = "✅ Pronto",
-    Content = "Sistema Chat via TextChatService pronto para uso!",
-    Duration = 5
 })
