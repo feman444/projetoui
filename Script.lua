@@ -1,1 +1,625 @@
-([[This file was protected with MoonSec V3]]):gsub('.+', (function(a) _LJYozMquHeCq = a; end)); return(function(l,...)local t;local a;local r;local p;local s;local d;local e=24915;local f=0;local n={};while f<169 do f=f+1;while f<0x270 and e%0x2160<0x10b0 do f=f+1 e=(e*700)%33327 local _=f+e if(e%0x22e2)>0x1171 then e=(e+0x193)%0xa525 while f<0x21d and e%0x45ee<0x22f7 do f=f+1 e=(e-935)%14674 local t=f+e if(e%0x1ae2)>=0xd71 then e=(e+0x2f9)%0xa858 local e=53692 if not n[e]then n[e]=0x1 d=function(n)local e=0x01 local function f(f)e=e+f return n:sub(e-f,e-0x01)end while true do local n=f(0x01)if(n=="\5")then break end local e=p.byte(f(0x01))local e=f(e)if n=="\2"then e=a.lHdklLDk(e)elseif n=="\3"then e=e~="\0"elseif n=="\6"then r[e]=function(e,f)return l(8,nil,l,f,e)end elseif n=="\4"then e=r[e]elseif n=="\0"then e=r[e][f(p.byte(f(0x01)))];end local f=f(0x08)a[f]=e end end end elseif e%2~=0 then e=(e*0x27f)%0x7587 local e=53889 if not n[e]then n[e]=0x1 end else e=(e*0x388)%0xbe56 f=f+1 local e=41950 if not n[e]then n[e]=0x1 end end end elseif e%2~=0 then e=(e-0x284)%0x6590 while f<0x2d4 and e%0x4daa<0x26d5 do f=f+1 e=(e*637)%45405 local d=f+e if(e%0x1bb2)<0xdd9 then e=(e*0x192)%0xab74 local e=29083 if not n[e]then n[e]=0x1 s=tonumber;end elseif e%2~=0 then e=(e*0x1dd)%0x5d3e local e=18834 if not n[e]then n[e]=0x1 t="\4\8\116\111\110\117\109\98\101\114\108\72\100\107\108\76\68\107\0\6\115\116\114\105\110\103\4\99\104\97\114\77\68\108\88\108\115\79\97\0\6\115\116\114\105\110\103\3\115\117\98\88\111\115\99\75\79\69\122\0\6\115\116\114\105\110\103\4\98\121\116\101\83\83\76\121\69\103\103\115\0\5\116\97\98\108\101\6\99\111\110\99\97\116\107\122\100\95\79\107\111\119\0\5\116\97\98\108\101\6\105\110\115\101\114\116\67\66\86\99\112\112\82\111\5";end else e=(e-0x3f9)%0x8c4b f=f+1 local e=74949 if not n[e]then n[e]=0x1 r=(not r)and _ENV or r;end end end else e=(e+0x39f)%0x8ebd f=f+1 while f<0x262 and e%0x11cc<0x8e6 do f=f+1 e=(e+493)%46341 local d=f+e if(e%0x109a)<0x84d then e=(e*0x325)%0x7b9c local e=11558 if not n[e]then n[e]=0x1 r=getfenv and getfenv();end elseif e%2~=0 then e=(e*0x2d6)%0x569c local e=61593 if not n[e]then n[e]=0x1 p=string;end else e=(e+0x16)%0x4d53 f=f+1 local e=85371 if not n[e]then n[e]=0x1 a={};end end end end end e=(e+202)%26464 end d(t);local f={};for e=0x0,0xff do local n=a.MDlXlsOa(e);f[e]=n;f[n]=e;end local function _(e)return f[e];end local h=(function(l,d)local t,n=0x01,0x10 local f={{},{},{}}local r=-0x01 local e=0x01 local p=l while true do f[0x03][a.XoscKOEz(d,e,(function()e=t+e return e-0x01 end)())]=(function()r=r+0x01 return r end)()if r==(0x0f)then r=""n=0x000 break end end local r=#d while e<r+0x01 do f[0x02][n]=a.XoscKOEz(d,e,(function()e=t+e return e-0x01 end)())n=n+0x01 if n%0x02==0x00 then n=0x00 a.CBVcppRo(f[0x01],(_((((f[0x03][f[0x02][0x00]]or 0x00)*0x10)+(f[0x03][f[0x02][0x01]]or 0x00)+p)%0x100)));p=l+p;end end return a.kzd_Okow(f[0x01])end);d(h(168,"0j-L(2Gf_Y)5XzO>2z"));d(h(105,"%GmQl*z9nP<a:h6,P9QlQnh3z*,Qn,G,*Ql<,mnGGan<Qah:*n,l<:Q<h9,6PzPnmma9*P,+nPm*PnlnhG*mGn9,hlz,9G!<PnQlhG*n,*z9Qma*Qa6Pn9<:lPlh6*9<;n<lQlzPzn,QPhmQa,QNhnzP+a<,mmh6*:<zlGlG::9zKGQ*QQ:m*<BlPQ(P:9Qa6,9n,Qnnm<9zG*GQP:lmhmzGs9naQ*aP*G,mnmm9n,*=6,**,n<zQP9uR<, PzmahQz*,,*9Gl<P*z:G*PGh<:*m99s6GnPPQnh<lG6QP,3Q:nQ9,Pnla9lhG:6<9h6h<nQPan9mkaQzhGhlzzqGPPm6a:*n6n9:2lP9m:6*z<-:n*h&z:9m,zn6m,a,,9,hnhmz<6l96z9*N6n<GPahzaUhPh:6z9zh,hPzG6a9*z:zzn,mn,l6h9za6*Q6hzhn9G,,PaQn<zzl:,Pmmh<mmP:aG9aMalQhhazar+<nm,hm*ku9Pam9a6l*nQG6G6<P*Qh6Gm <<9lGhn9m6<P<G,:**6,G9Pm{*l"));local e=(-296+(function()local p,e=0,1;(function(e,n,f,r)e(e(e,f,f,f),f(f,e,r,e),e(f,r,n,e),f(n,n,r,n))end)(function(d,n,f,r)if p>226 then return r end p=p+1 e=(e-541)%3577 if(e%756)<378 then return n(f(d,n,f,f)and n(r,f,d and f,f),f(f,n,n,f),r(r,f and d,r and d,n),n(d,f,r,r)and n(n,n,n and f,d))else return n end return f end,function(f,d,r,n)if p>101 then return d end p=p+1 e=(e*489)%9444 if(e%1618)>809 then return r else return r(r(f,n and d,d,f),n(n and f,n,r,r and d),r(n,f,r,n),f(f,f,r,d))end return f(n(n,r,r,f and f),r(d,n and n,n,n),f(r,n,f and r,d),f(f,d and n,n,f))end,function(d,f,r,n)if p>203 then return f end p=p+1 e=(e*759)%43553 if(e%992)>496 then e=(e*508)%7170 return d else return f(d(r,d,n,n),d(d,r,f and n,f),n(f,n and f,n and d,r and d),f(d,f and n,r,r)and r(d and n,d,r,n))end return n(n(f and n,n and f,r,r),d(r and r,n,f,r),f(r and f,f,r,f and d),d(d,n,n,f))end,function(d,n,f,r)if p>307 then return d end p=p+1 e=(e-511)%34669 if(e%1794)>897 then e=(e-933)%21404 return n else return r(d(n and n,n,r,d)and f(f,f,d,r),n(n,f,n,n),r(d,n,f,d),f(f,n and n,r,r))end return n(d(f,r,r and d,r),d(n,f,f,n),f(n,f,d,d and f),f(r,f,r,r))end)return e;end)())local _=a.DOBHpb_B or a.ceJBOfqj;local de=(getfenv)or(function()return _ENV end);local t=4;local r=2;local j=1;local d=3;local function re(u,...)local o=h(e,"eS!r Fp*Yif8(43_Fi4+8Yf/Y8*(FY u!YFrp*F!rpSF6f4!(i8 fSiF*8_r44(^fYiQ(S(4fii**4Nr34468YfC448 (Sf4FfSrH!35(Y8J3f3F(i8(f ii!Yp!r4! f8i8*Ypn Y*!Yfpi _rY!((w3f4((4fF!8!p_Y37(Y_!_i3r4r8*ffY_*4F3r(S Sf_S3p4r8YiSYfpFFprrrSfri *hFY tSF8y8 (4Y*F68Y(r(i(riiir08_p4Y()fYOr3j(S8fiF*(9r_!4N8YfP484S(3fFp3*_p   !4!!i8YrpYF^rYp4*SF348(4fYiR*Yfr84f!YfpFFp  _82S_F4F(ffS!8!*_Y31(Y!!_f_Y(i(rf8YF*(Fir(_f4*8_f(i Yspr 8rpSf2 344YY8*(FY E!Y_4iYi(8Fpr!*fx8((!f*Y(* _r3S(AfYiZ8i( f(YrY pi (rF!ffri!*BFY -*fYFpprr!4!!.33i(88Fr8!*9Y_b4YS!s4_43*4 f4frS8u43Y4)8Y_!34438(fFifprp( FrY!d_43 p8p*rY!GTY44*Y*4iF YOzYMYi_r8_(ri4rF!8(l3(4F*Yi if*_p  ((8(*iYYGpYr44Y44_Ff!*i3{_p__3F(FpYY!F_ !OYSS!pgi_F4S8(f_!8!!_Y3g(Yi4rYr4FFH_4f 7 4 r!Y3c_Y_(4i4if4f!Y8jrXr4d8Yf1*FSXSF!448i(SYr !4S(_4_a4*(!f(YS*fS0 Y!SSf_SiYfS8 fpY*tr_ 458YfI4_4S(S8 p3*_pf!rrWSiL 3 p8F8rY!dlYrSr(! 3(,!3*4Af(i_Y_p3384i8YfKYY8S8(f *(*_F_ *r SFi8Y pYFvrY**piFi ((r8!im*Yp/Y(iiY8prF*r3!pwF383 F8 *!YS6_Y! !4Sp_i_F4 ( r8!8hY_y4Yz(S*_r4i((iYi(*i*i 4 !888 YY*/FY!4(Y(43FiSp(4C483_4Y8iiii!!YrS 3!SS(_S3fprFirySY<6rFrFS(ni_444*Y8ri(*_pp F3YS*5f3F3SFr _!DPY_N(FpEpF*4!f9YpYYrY4*g 4 !4Y_p344((*friS* Fi  !48r8rYIpYFP!F(d(F44Y(  (Y3!44(F8pf YfpSFf_R!pQ_fY(r848!i3*iF( _rf8r8SY1pYF}YFY_**F3!8!Fl83_(84 8fiiYpp*F8SY!S< 3(4F(pYSi(Y pf3r4!8miYY>fi8 i(*rp4Fr (!iS*_3*8*i Yr}SY34YYY4fFFS!(iBf8fFi *FF8 ir*S3_i_!YYiff*Y*piF  *r!f8fr*Yp{ YS48Y844FYS 8(l(84Y8if4i8rg!k!FS8uQw8fip8p!rY!N=Y44*Y*4iF  !4YAY4YrpY!-r( !Silr343!(8 rr:Sw_Y3bS>S_M(fU4Y8ifpY8P8_Y4Y(LfY3r34(!i(iiY(p( 44r(pfaYY*-i8fYYiY!Fi rr(SF-f(S((8 i4Y KY_C4Y(ZfYij8Y(_YYrr!idw3Y4{_is 3(84(Sf3iS*4pSFf!4_!j4_ 4(8_fp!rS3_64Y(biFrUrF 4_(8 rY SF( FSi-(_S3f8i8! YF(pSFrr(SSi8Y3pYFbrYz4fYf4(F*Spr8K83!r_FfrYSpr i4r(Sf2YY*:i8fYYiY!Fi rr(SFLfYrYYFXrY!#_FiQiFf4p!r8iYfS84f Y*!g!ir3!(3!3i43*YpYpf*Spp 3!4S 4f3(4*8rfr iE8#Y4Y(IfY*4SYS4rF3F4S3_fsF_4Y34_*3p(Sf4Y4*3p( SY8F*F8!r4*Fr !!l>Y_m!F!SSr_F(_(i8pi Y***384f8YfcYY4((*fSY(Yrp(F!rSS3__YQpYF2rY!xBY_LPYl=f8if*YpG Y*(YSp4 4_.S_S!344F(p rrYSc_Y3A!8S_tp33(48rf(pr*DFS f!SA8O 444! 8r8SYLW3YSFSiS!_(4Y*Yf*if*FF4 3(88_iYY>pYfrf4iIp4p!!3!FS __48(if(iS*(pF384*8YfKYY(^( fSfS*FpfFr(8(piYYlpYr44Y44_FfSFif_p,S_iY8p8SiFY_!yr!r_S_QS3(4_(f rrFSl_Y3z!*_(3!4i4*(fYFiS*4rYr4+rSiir*_p= YrBF8p_Fpr3S4vr_(*r*_ )!YSN ( YrS!r8Y3p4S8(i4 .*_FS 83ESYP!3*4 f4irY(pF (_C!_+i_(4Y*YY4i**_pprr!4Sr8Y4pi8Fr !!1)Y_wr3r!S*_4(*(pf3fr*4* 383(8Yf.YY3!8f8YYiYrp8 Fr(Si_(8fi**_piFB K!i+(_r3S(r8Sii*Yp* _rYSi4r8YfwYY*/F8Fr!YSd_Y(4pYp4YFrr:F*M*fYi**S^S8!_S __3f(if(iSS8S(3Y4;8YY4!Y!( F_34*r#r4Fr!8S_+ 3Y(4(!FYpf**F*ri! S*X!fFfS8 fpY*=r334v8YfL(84_(ff3Y4Y!_83i(Y8tiY_*4*(!frir*YFSr8!Ff8ir*Ypx Yi3*4**384 8Yf}YY8p( fSY_SrS73?(Y8gYF!;!Fr4_r4Y!Yr3 *!rS _i3YY&*Q*p*ip3F(rS!8X43iiiF8Y3!YSo_Y Yr(! ;Y_rf!*_p*i!pip*}p!*SSZ 3#4FfffFY8pFFfrr!*X3_(4F(p8 Fp*rp* 4_*! E _!(48 8! _F Firfr!&iU!_SY_8fiF*3*rS*rYS4QS3(3rY*f4Yi*ippb_S33F(*4r4*(FffYrp4S3  rFaiir*(pn Yr5p4  FSr488fYYY*%FYYrYi*(p  !!iSrqrYrp_F<rY!bF>p  (r.3__F3(prF!raSYGu!_rF!(_r343!(3fiY8*F_8_3(Y8wiYp!A _YFYp4p4F( B!_Sf8,444Y8YiFYfpif8*f!p2r_S4S*Yf4i**!pS (!48rf(YlpYFR!F(J(F44Y8 8(Y4r3*4:8SiSYf!B!i pSiS 3i3!F8F(!YSy_Y(4pYp(YFr(_ *9Y(YF*(p!ri_ (Y;(iYfY84i!rY rF*r4!Y=(343 (* rrpSq_Y398FFgFFp4!*_xFYpFF8 =_Yv!S*.Y*8YS YroSY34YYY4fFF =8i.ii8 i4*Sp  i !SS)ffa8 8if8i piSAr(!F(Y3x3 (S(SiFYf*r38448YfDYYF4_Y_4SF(ff3}TSYS(_i_i(4(!r8!FbY_J4YS SS/ 3 (F 8rfSY?13YS3S4S*fY(i84f(i *Fpf3r4r8kiYYVFF_m_pD483YY_YS2S4_(3*pr 3r=SYmH!f F!(S _*43F8 *!YSj_Y!_rY! ,S3_4p(rrY!%dY_/4Y(sfYfY8YprFFrCSYDR4F*g*FY4 !j**YYrYiY!pf _r88rf3Y.pYF%Sf8ffiS?S(!Ft3_i3p(i8fF?p3pFF r_S8Ki3(4S8(fF!8S _Y3t(Y.r9S_f(4Fr 8!h%Y_O(FpopF*4r*q!pYY YS*9F* r4Y} 34iKi4ir*YS<_Y3j(Y8xiYY98Si+r8! gY_M4Y!*}i_444prF3rISYbI4F*c*FY4 !_k*Yi=i4*(p*>xS8!FHY3F4f*&*iY(*(F_48(ifYij*Y8R84i(Y*FrF4 KS4S!YY*ZFY 5!YS#_Y!3{Y8ziYYvpYFWrY!EDY_y484SfYiN*Y8!f4fmY pi 8rS!(qF3((r((f_if*SF_ F(8(YiYYVpYr44Y44_FfSFif_pjS_iY8p8SfrY4pSF rir!<S 8S*S83ri*SrSw3u(Y8LYF!1! r4_p(_!Y rr4!(d4FrS_!r38i_rYp  4_g_io(_34_F8 i!YSA_Y!S!(S 4f_F4(( f*Y3D8}r4Y(nfY*4SYS4rF3 8_!-r4  !Sl(_S3 S83Sif*ip*Fr(884iYYGpYr44Y4(_Ff3Ya3}3iQp4i4 fif!S8Sp3Y408YY4!Y!( F_(8srur4 p!4SiW(3_48*kY3Yi*8pFri!iS8irY pT Yr{pfp_pSrS! (a_Y3F(f8Wi *F_8_p(Y8}iYp4kY%4!F48fi4_i< _(Y3F3((i8 iiY((rYi !!S9__8*rF( u!YSB p SrFSFi8iYpYFnrYR4fYf((F*(rA8V( (_8*fErY rF* !4Ys _*imi8f_ifY}p*3r(88diYYs8F8S8W!r!F_:4Y(KiFrhrF 4_88_rY SF! F!8S 3i3!*YYSi Y p4F!!i41_(3_YYf=f4Y(**_=4Y(:fYiq*YpmfS*5S8O*3Y4>8Y3*343 fSfri**3_838(Y8BiY( (48FfY Z**p!ri!3M__F*8p* Yr)SY 4 ir8S4_ 3i4!*! n!YS,_f3)(Y8Ci8Y*pYF%rYY*p4p r_!FSpjp*8pf YruSY*p ir(!4&F483t84fFY(SC_Y3o(Y8Si(Y:pYFN f(r{Y_S4Y(SfYia*YpyY4r>Si2>3i4M8ffoiY_!FY S!YS!_Y3-(Y8br_Y.pYF,ri!;^Y_Z3!(}fYiP*Yp> Yr2SYNR3Y(Y_*fri *1FY #*(Y!Fi 3r8!E_i_!(483i8iiD8_r4Y(ZfY_3444* Yr?SYnE3Y4{8YfoYY*XFY ;!YSn_Y3O8Y3_i8Y pYF^rYp(*SF3r4(rf4ib*Yp0Y8i_Y p_Ff4r8_fCYY*Mi(8!YiY*pS 3!_8rfSY;pYFZY(YY*SFr r!3O4Gr38pr 3r{SYN%!8r_! R__ffrFY P!YS<_Y3_(Y8GiYi!ipF^rY!tSd_d4Y(}(YfS*Ypm YrBSYzr3Y3!(rfnYi*uF3 c!YS?_Y_((Y8:iYY!pYF!rYr!SF_l4i(s8!i,*YpDpYr_SYhS3Y4S8YfrYYY!pF {!fSI_(3P(Y8hff8rpYFrrY!FzY_N4Y4!(_i&*(pI (raSYL#3Y448YfSYY* FY !!Y!=_43a(Y8-i_YIpiFspY! QY_O4Y(ifYiS*YiM 8rqSYZv3f4X84fBYYYYFY s!YS!_Y3K(Y8Zf!Y#pYFLri!QDY_?4((ofYik*8p4 YrZSY rF4 !!fEF_p3 i8fSiF*Fpf S(88FiYY7pY(rfYYS*_F348( fYiO*Y4 fifrYr/r_S4K8YfT__4_(ff8i8YnFi r!48SiYY9pYF*rY!umY_r4((LfYi}3_(S8Sf S8U33Y4g8Y3p_S438(YpiSY!p8F V8SY+S3(((Fr  !^hY_I!_!SSSG 83(_8f*rYPpiF r 88fYYY*=FYYYi4*4Fi 3r*Si_(Yr*SF)rY!. 8FYrir!?i_r3((F8frrS(6#3Y4.!({S_848F8 4!YS<_Y!r!iS4_4_!(ifrf4Y!*!FFr8r fYiy*YpC YF SY7j3Y46YpfkYY*#FY B!YSu_388(Y8AiYY pYFSrY!SgY_ Fp(gfYiI*(pa ir?S(*33Y4V8Y8(YY*SFY u_pSZ_Y3-(i8ZiYY=YY*8rY!OCY_D4Y(!fYiq ppH frhSfK73Y4U8YfFYY*JFY !!YS!_Y3pFW8kiYYjYgF-ri!&dY_l4(r3fYiT*Y*Y YrSSY!}Y4468if6YY*-F4 c!3iY_Y3S(Y(YiYYSpYFsrY! Yp_v4Y(P(li6*ip#pY4FSYgS3Y478YfFYYihYr 7!iSZ_i3;(f8Rff8rpYFrrY! qY_T4Y(,f4ic*ipD 8rCSf6)33f88YfSYYY FY S!YSS_Y3  p82iYYd*(F5ri!{{(p34Y(#fYfY*YpS YrR3pn+3i4%88fEYY*&*Y3F!YS!_Y3d(Y8FiYf)h4FNrf!b0f_H4((x8YS!*YpS Yr*SYc!3Y3!F8f:Yi*yF3 D!YS}SYYF(Y8SiYYSpYFSrY!cp8_y4i(NfiiO*ipP (f3SYEn3Y4&8YfSYY*O!p h!YS9_83U(Y8ziY4 pYFSrY! uY_;4Y3%ffiB*ipT iraS4lolY4r8YfSYY*SFY r!Y!!sf3j(88gi(Y:pYFDrYrS9Y_S4Y(rfYi!*Y*?pUr6SYwE3_408ifKYY*4FY ?!YSS_Y3M(Y8SfFY}pYFhrY(icY_64Y(0fYi?*Y*!F!rGSiyj3(458Yf=fY*8FY S!YSS_Y3S(Y(!fSYHpfFPr8!ZIY_=_Y((fYi!*Yp! Yr!SYQp334B88ftYY*}Fi I!4Sg_Y8i(Y8KiYY)pYFarY!53S_24Y(ufii:*Yp5 YziSYDg3Y4!8Yf6YY*/43 j!YS,_i3t(Y8uiYFipYFRrY!rVY_74Y(1p(i>*fp+ frISij)3Y**8YfJYY*SFY d!YS _Y31(Y8ri_YzpYFQ*(YF*8p  f!_!Sir*3p} YrhpYpSFfrF!pS Y8*pFY A!Yp!F4 4r*!p_4Yrp4FVrY!O*YFS Sr!S8i^*Yp. YrB *Wo3Y4o(f rYY*?FY  !YSj_Y3cip8RiiY/pYFdrY!{sYF*4Y(PfYi!*Yp! Yr ipVo3Y4Q83fjYi*A*Yp8!YSF_Y3 (Y8SiYY6!(F&r4!)lf_G4i(Bf34p*Yp1 Yr SY0S3Y4!8Yf kp*bFY /!(Sl_i3L(Y*FiYYEpYFbrY!j?Y_gY{(=fYio*YpL Yry!fSf3Y4^8Yf YY*0FY ar Sn_i3M(i8+iYYNpYp rY!V/Y_!4Y(!fYi *_pm Yr5!YR,3i4q4Y(8YY*FFY  !YSr_Y3OY(8)i4YUpfFyri!M13rp4Y(,fYi3*YpS Yr!SYA pp4A8YfNip*EFi #!Y4F_Y3z(Y8.iYY<pYFO3n!EOY_Z4i(7fYilYfpi YraSYx 3Y4a8Yfhi**UFi V!fS0_Y3&(Y8riYYIpYF!rY!!;Y_ 3S(QfYiqi!ph irWrY!83Y4F8Yf YY*rFY Q3(SV_43R(f8PiiYop3iprY!wnYJY4Y(SfYi!*Yp (pr<SY)R+^4a8if0YYrFFY G!YS<_Y3z(Y82 zYPpYFyrf!-IY_P3f4SfYis*Yp  YrASY/j_84E8ifIY8*kFY N!YS8_Y3I(Y8!iYY!pYF rf!qBY_;;!(Tfii.*3r8 Yr SY!F3Y4S8YfSYY* 4p &!YSMS43n(i8Ri(_3pYF+rY fNY_S4Y3> 4iB*4p& (r{Sf6933FY8YfFYYifFY S!YS6_Y3  p8>iYY#i!Fgri!)!YS84Y(FfYi *YpS Yr.4(;#344U8ffJYi*vF3Yp!YSI_Yx!(Y8SiYY!pYF 8p!h5Y_d_f(lfiiz*Y!F YrGSY.=3Y478YfO f*&FY +!8Sm_Y3M(YF*iYY/pYFSrY!b<Y_14Y(xfYin*Ypm YrSSft&3Y4G8Yp!YY*=FY }!YS5_Y3;p_8JiYYTpiFhrY!b{3_w4Y(Pf8if*YpX Y***4* r8rF!fSp_S4r84 r!4SX_Y3IS!S__f(i((Fr *!IaY_w!(!FS _F3Y(_8ff p8pFFf p!Sgr34*rF_ ;!YSm Y (!iSr_4(i((Frr(!9UY_Wr_!SSF_F*8** YrjSYF  4r(S4Su_*3!((i i*pPp  S!8SF3S3348( iiY3p8FF4Y(LfYiK*Yp( Yr2SYS!q34<8Yf9Y4*gFY X YSf_Y3v(Y8EiYYSpYp!FF!K.f_s48(DfYid*Ypr YrWSY{!3Y4!8Y(df!*lFY y!YSB_33E4f8SiYY!pYFFrY!P2YSd4i(tffiy*fpm (rI!fS43Y4r8YfFYY*vFYpE!4S)_83/(882ifY<pYp4rY! VY_c4Y(+fYilirpW YrQS(;t3i458Y8YYY*MFY S!YSu_Y:i(Y8niYYr* FwrY!CF*pF (!(SS_344fr8*i(Y**!384S8YfHYY(YFi y!YS1_Y31(Y8)iYYYfYFrr_!91Y_0r3r!S*_4(ff*Yfr=SY%.3Y4=8Yfy*Yf_F8 Y!YS;_Y!Yr4S4_i334*8ii(!r;3_M4Y(w_g_F4i((8(iYS8C33Y4H8Y3p_S438(YpiSY!p8F 98SYqS3(((Frr_!7^Y_?!3!iS8_i4f((f4rrS_Bz3Y4Ta39F383 (*8!F8Sru(3+(Y8d3_3_4f8(i(* ** p S!FS_)+3*4!8(YaY*piFp  8Yf&YY*&FY lpY* rY3r4S8)iYYXf88Yiii!piFr (!FSfir*ipc Yr>*!mr_U4K8Yf)4Y4_(8fii(*ip* 3(88YiYYtpYiifpir*(FS p!r64ir*(p0 Yr5F3*!F*r488fiYY*NFY8*i*Y!prFrrYSS_83Fp8FprY!BLY Hrir!T4_33(pr 3r7SYgs!8r_! w__ffrF8 i!YS%_Y!prSS(K (r4*8(f*i!B8_*4Y(^fY4S4((_8fi3*4pF384p8YfDYY(!84f4i*YpF43r(_8uiYYHf(8Ff8i *fF_FS(rffix*Ypji(i_SYB<3Y4z8Yf5YYY iY r!8S=_Y3<rpSF?_Y!pYFlrY!CsY_o8Y!_3Yir*_p- Yrup3pF 8  !*S!8f*rpY Q!YSa 2FFrFSSEp3_4S8 YfY_**p !Y!SSf7 *YpM YrhSYaj3Y4L8YfrY(*PFY 6*8*i*! F(88fiYY2pYi*i4i FYF(riri94A!38pr iruSY+x S4S8ifri *:FY O*3*iF4F*rYS_>f_ 888i8!YFv8_i4Y(7fY4Y3S(*8Mi(YSp*FC  8Yf=YY*GFY )!YSsrY3r(48miYY:4Y8SfSi!*8_q4Y(gfYiA4SpS YrySY(33Y4Q8YfNYY*oFY p87S-_Y39((8<iiYUpYFnr(i3%Y_:4Y( fYiS*Yp (pr/SY)w_p418if#YYr3FY ,!YSS_Y3l(Y8p*rYvpYFg p!5ki_z4i(+f(h3*Ypw Yr3SYQS3Y40Ypf/YY*JFf W!YS&_3pY(Y8QiYY8pYFSrY!.kY_ Fp(RfYiGYrph irwS(*33Y4W8Yf3YY*SFY ;_pS}_Y3V(88.iYYVpY8rrY!1+Y_S4Y(SfYiBS_pd YrUSi1#3Y4#(f rYY*nFYpi!YSq_Y3kFi8miiYmp(F)rY!M!Y_(4Y(SfYiS*YYr YrCr >X3i4/8ffvYY*uFYFF!YSQ_Y3{(Y8!iYY piF>rY!KF3_S4i(afYF3*YpF YrFSYN73Y4p4pf<Y(*gYp S!iSu_43P((!3iYYvpY*3ri!S9YSk*4(vf4iB*(p?FprcS3YY3Y4F8Y(3Yi*SFY K!YS *p3O(Y8#(pYSpiF2FY(F=Y_F4Y( fYi3*YY0*rr5S4km344n(Sf?iffrFY *!Yr6_Y3k(Y8}i4YHp4FOr_!D}f_%43i8fYiF*YYS YrSSYBS3Y4 rpflYY*a*i )!iS,_(F3(Y8wiYf3piFSrY <f4_V44(5f(iaYppApYF8SYnF3Y4F8YfiYYY!Y8 :!_So__3x(Y8giYYFpYFFrY!*)Y_!4Y(pYrid*4pb*5r>SiO93i4z8(S3YY*VFYpY!YSS_Y3  p8liYYoipFSri!,!YiF4Y(FfYi *Yp3 YFZ84+J344H84fTY_*>*Y3F!YSF_Y3F(Y8YiYY3!2FtFi!grp_S4i(Vf4i<*(43 Yr#SY!33i4S8Y(>!4*xF4 0!(S#+p303Y8(iYYFpYFFrY ^{Y_{_F(Df3i?*3pg YrgrYSS3Y4p8YfpYY*(FYp) !S-l93;(48yfYY+pYpprY!p<Y_Y4Y(*fYi:Y p2FsrMSY2#3Y4583frYY*YFY**!YSS_Y3S(Y8 SpYtpYFop_!0yi_x4(r3fYiR*Y83 YrSSYtG8p4I(lfPY_*CFY W!Y(8_Y3Y(Y8YiYY pYFpSr!sS6_1!8(1fiix*ipc (f3SYZ53Y!r8YfSYYY!_8 )r2SdPi3u(Y8:8Y8!pYFYrY!Y<Ys(4Y4!8SiMYSpop_r?SYqB3Y3Y8YfYYY*!FY !!Yr?B_3D4S8Gi(Y>*pF% Y!3BY_Y4Y4*fYii*Y*!p!rd!SB#_44R8YfTfYY FY i!YSi_Y3F(Y(!(8Yc*!FZFi!#0Y_g3f_(fYi8*Yp4 YrmSYS!_44V( fdfp*0FY z!YSp_Y3i(Y8(iYY!pYptr_!MSD_u33(U8SilYfpf YriSYSF3Y4z8Y(+Y3*1pS %rSSJ_43N4f( iYYfpY*SrY!PvYQ!W8(m8riKYFp. Yr%!fFS3Y4(8Y83YY*tFY t!(S/6S3/4 8xifY2*Yp rY!YdY_S4Y(ifYf!YipTFSr+!85)3Y4B(Yf*YY*YFYF !YSi_Y3E(i8JfSY}p_F:rY!^aYI*4Y(ifYi *YpY Yr.3p>{_X4#(AfqYY*KFY_8!YSY_Y3Y(Y8 iYYp_GF) 0!tpz_k4i(ofYi0*(43 Yr>SYFY3Y4S8Yf Kp*vFY yi(Su_i35(Y*3iYYYpYFYrY!zhY_?*p(M8Si0YSp9 Yr%SYSY3Y4f8Yf YY*PFY Rr3SAgS3E(f8=ifYkpYp*rY!YhY_ 4Y(ifYi Y(py YryY(oj3i4U8Yp3YY*YFY *!YSX_Y3AYr8^f#YP*IFdr(!K,3(84Y(YfY_r*YpS YrSSYQ pp4Q8Yft38*cFi #!(Y3_Y3G(YSiiYYSpYFZ#p!uSD_14_(^fYi7*Yr( YrYSYnY3Y4 8Y(bfF*}p} br,S+SS3+(Y(!iYYYpYF!rY!SmY_u4_(<8Vin*_pV YrUrYS!3Y4Y8Yf YYY4FY =_pSkO)3h4J82iYYjpYq8rY!Y9Y_Y4Y( fYipFrp.FGrHYph;3i4J8iflY(33FY N!Y*3_Y3S(Y8 SpYHpYFhf(!m1i_X4YY3fYiY*YpY YrwSYa+( 4o(0fgik*XF( O YS4_Y3Y(Y8YiYiipYF>r8!uS6_,4f(qfiil*Y*i YrYSYPY3Y4O8Y(cii*yp+ +!(SWSF3v(Y*3iYYYpYFSrY!oPY_ppQ(G8Mi,SSp& irESY7/3( 38YfKYYniFY S!YSpYP3R(_8nrSY2piF:rY!#E(p34Y(WfY!i*YpS YrV3pQo_24T(!f0YY*oFY_8!YSY_Y3Y(Y8 iYYp_6F{ g!gYp_{4i(BfYi.*(43 YrHSY*33Y4S8Yf Xp*GFY XffST_i3V(Y*3iYYYpYFfrY!NUY_9fp(h8SimYrpN YrCSY F3Y4i8YfSYY*!FY 788Stzu3-((8xfSY;pYS3rY!YCY_p4Y(+fY8c8*pnFwrN!%ML)34J8Yf YY*iFY f!YSC_Y3C3S8JfSY-*SFNr(!ESf_f4Y(ffYf_*Ypx YFW!?Nl_!4x(!f.f *A*YF4!YS8_Y3Y(Y8!iYf?**Fc r!qSr_<H7(n(Yi(*Yp( YrYSY! 3Y4K! fNi!*dp  /!fSzjY3r(Y8iiYi!pYFfrY!PSf_^3S(#8!i;*Yp< YrFSYgi3Y4i8Yf YYY!F( Xr!SMS*32(Y898YiipYFfrY!fjYQ(4Y3}8Fi=YrpE 3rHSfsTEY*F8Yf(YY*pFYp !YSm?Y3n4!8nf YCpfF% Y!F,Y_i4Y4ffYif*Yp?Ffrl!Sq,_!4z8Yf2YY*_FY i!YSi_Y3 (Y3mf!Yk*SF& !!C!4_)4(4!fYiM*Yd* YrSSY6s8p4{(Bfgi!*}FY P!Y(8_Y3Y(Y8YiYY pYFpSr!BSh_<*p(:fiiW*ip% (f3SYb>3Yp38YfSYY* 4p T!YSti_3n(i8jiY 3pYFYrY!flY_,4Y(I88iTYDp7F%roS(0XSY388YfYYY*fFY r!YS5+!3?4K8kf!YbpYFqrYr=CY_Y4Y(YfYi *YYwFrr&!ddO_g4t4LfOYY*iFY Y!YS!_Y3S(Y8Xi3YU*?FX !!aGY_P_Y3rfYiY*Yp  Y 4SYaJ8p4/(sfAYf*TFY B!338_Y3Y(YF8iYYSpYFSrY! Yp_P4Y(2Fril*ipu (f3SYj-3Y3_8ifSYY*prr H!_S0fp3&(i8AiiYRp((3rY!gWYi34Y(SfYi _pp< YrBr*;S3i4k(f rYY*YFY 8!YST_YLd!S8OfOY>*nFUF !tSf_!4Y(ifY8Y*Yp1 Y !Si>&_!4a4rfJYY*5pfF*!YS8_Y3p(Y8XiYY9*SFM h!xSr_94f(>fYfF*Ypi Yr SYC<3Y_X( fCi!*wF4 lrYS2ofYr(Y88iYY8pYFGrY Gp*_J3r(G8ri&i p9pY !SYl(3Y4Y8Yf!YY*opF 0r Sq& 3C(Y878Yi8pYF(rY!()YSY4Y3Cf(ilYFpOF5rQr(HclY3i8Yf4YY*4FYpY!YrTSS3C4p8wfKY-**FcrY(!-Y_34Y(3fYi=*YY&Firo!pE,_p4W3zfjYYY4FY 8!YS3_Y3!(Y8BifY^*!F, !!RSr_>_Y48fYi8*YpF Y MSYS!w 4O( fQir*)FY ) Y! _Y3((Y8(iYi(pY*g44!RSF_u36(%ffiRiY*8 Yr4SY)43Y_Y8Y(m!S*tpp #rTShS(3j3Y(SiYY3pYF3rY Y-YSx43(u8*izYDphF*rwSYQp3Y4_8Yf_YY*vFYp,!_S/s*3E4*8w(WYTpYF8rY!(cY__4Y(!fYiyY3pBFrrM!r27_ 4m4Y44YY*(FY F!Y!V_Y_!3!8?fFYm*rF;rY!w!Y1 4Y(4fYi4*Y*( YFo!Sxj_p4P(?fGYf*H*YFr!YS3_Y33(Y4YiYfKY&F{ *!oSN_W_((#fYi(*Yp_ Yr_SYUv3Y_+(*fvi**xp* QF<S%SY3F(Y(^iYYYpYF_rY!+ff_O3Y(o8Yi+*Yp>pYrYSYSU3Y3J8Y(YYY*jpg ;rFSnuY3Z(f8HiYYrpYF(rY!(^Y_44Y3B8_iOYFp) 4r#!YPg_f3r8Yf3YY*8FY P!Yr0_83D4p8ufpY#Y FxFY(F,Y__4Y(YfYi!*Yp2S!rX!*N9_*4m8YfKfY*rFY _!YS__YRY(Y408KY)*YFC 7!h!(_C4Y4ifYf<*Y*M Yr2SY!?_F4=(Yf^iY*0YX & YS3_Y_S(Y8YiYY_pYFHFF!1Si_g3i(IfYihiY*8 Y SSYSS3Y_Y8YfIY4*Jpp GriS0_f3y(Y(FiYY4pYF4rY!3GY_oHi(d8SiaYFp^ ir7SY(33Y4f8Yf(YY*tFY ?3rStV!3u4!8/i(Yap3!8rY!fHY3!4Y(SfYiS*Yp (prGSYsH4f4W8if6YYr3FY f!YS(_Y3J(Y8,ppYn*rF- F!w6Y_y4Y6FfYi8*YpS Yr!SYkI*84;(!fjY(*Xpr <!Y43_Y3f(Y8piYYZpY*Uvr!RS!_?3!(:8 i^iY*p Yr(SYAi3Y4p8Yfgi(*Op! wr SWkr3.(Y88iYY(pYFprY!#ZYSj3*(;8 iuY p.F rHrYS*3Y438YfiYY* FY ZriS%M 3t4p8jfFYDp3!8rY!81Y344Y(SfYiS*Yp (pr>SYhy3F4R8ifIY(33FY {!Y!p_i3S(Y8p*rYX*FFqrY!Sgi_/4i()f(R3*Ypz Yr.SiBS3Y4 rpf}YY*Mp3 S!iSB_Yf3(Y83iYY(pYF-rY!l( _y3p(K8pis*(p;pY pSY6_3Y4(8Yf!YYiNpf vrYS;V!3D(f8ziYirpYF_rY!_OYvM4Y3B8Yi0YYpbF rCr(>xaY4Y8Y8SYY*fFYp !YS&_i3m4Y8mfYYy*iFN fr!AYAS4Y4_fYi.*YY>pSr;!iEb_i4Q4 f-fY*(FYF!!YSf_Y3!(Y4vr4Y,*8Fy !!m!(_%4Y* fYfS*Y*r Yr!SYSP_S4X(pfWiY*Api OrfSf_Y_S(Y(_iYYxpY*9 8!HSi_h3i(V( iO*YpY Y !SY6_3Y4%8YfLi(*#p8 vrYSu_Y3{(Y88iYiSpYprrY!!=Yv73p(N8pi5ifp^FirA Y}33Y438YffYYiFFY  rrSy_Y3.S38SiiY-pYS3rY!3cY_(4Y(5fYikrrpdFprt!p%A3(4b83*8YY*3FYF8!iSS_Y3S(Y8 SpY+pYF}Fr!S)i_D4(r3fYi5*Y8p irSSYmg8p4Q(pf>i *XFY )!Y(8_Y33(Y83iYY pYYOFS!OSp_l3!(7f8ia*(43 Yr5SYFp3i4S8YfBFp*&pD Xr S;_Y3Z(Yp8iYYYpYFYrY! uY_p8r(y8Ni#i(pS irASia%3( 38YfZYYi Fi S!YS *p3?(Y8d33YSpiF:rY33mY_Y4Y((fYi0*Yp0F8rM!2x%_v4B8(fk8Y*pFY Y!YSf_Y3r(Y8xf*YW*cFy  !:>Y_j4Y4ifYiY*YpY Yr SY!W_f4:(1fNi+*h*X R!YSr_Y3Y(Y8!iYYSpYFx r!USD_q3 (tfYi0iYYr YrYSY7 3Y348Yf hp*LFY &*3SS_i36(Y*3iYYFpYF*rY!szY_Cir(Uf4i/*4pz (raS3YY3Y4F8Y4YYi*SFY W!YS *p3=(Y8M4bYSpiF^rY33XY_F4Y(*fYin*YpK! rjS4^h344d8(fDfY*FFY F!YSF_Y_i(Y8^f!Yvp4Fsrf!B)i_o4Y(FfYiF*Yp* YrhSY!Jkh4o84f&Y(*v*F #!Y43_Y3F(Y8fiYYApYF>_r!?I4_k44(mf(iU*33Y YrFSY !3i4S8Yf&YY* 4p /!YSMrf3S(i8,iY 3pYFFrY!fMY_,4Y(MY iJ*4p+ 4rzS(0doY4p8YfFYY*FFYFY!YSz<331(48,ifYZpiFZrYrS7Y_F4Y(ffYiN*YYjF*rGS4LK3(4Q4Ff?YYr3FY F!YS(_Y3?(Y8ZFrYTp4Fdr4!2-(_w43 YfYiF*Yf( irSSY.P3Y4 rpfKYY*?f  S!iSq_Yf3(Y8FiYY(pYFkrY!I3 _044(Wf4i<*(popYr*SYLF3Y4F8Y8YYY*upp G!4SV_f3#(i8+iYY3pYFFrY!(=Y_K4Y3x84i+*4pH (rkrFom3Yi38YfFYY*YFY x!YSk8r3:(48<i4Yap(F5r3fY,Y_F4YSpfiiS*Ypm Yr ip5v3Y4mT3fSYi*jFYL3!YSF_Y3Y(Y8WiYYJ  FNr4!%C4_b4((1(Yfi*YpF YrFSYSi3Y4h(*fyY4*6Ff M!iSB_Y_Y(Y8FiYYYpYFQrY TS4_L44(vf(ibiFpz 3*pSYbv3Y3 8YfSYY*!FY  fpS+_Y304(8OiiY6pY_*rY!t}Y_S4Y(jfYiY*Ypt YrrS4qg3Y4s!8SW3i3*(p S!iSrKz3t(Y8^4f3S488FYYYS*fp 48( fYi5*Y4 fifrYr&r334L8Yf/_S3b8ifiifYr_83r(Y8
+ local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/Library/refs/heads/main/V5/Source.lua"))()
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Remotes = ReplicatedStorage:WaitForChild("Remotes")
+
+if shared.connectCharacter then shared.connectCharacter:Disconnect() end
+shared.connectCharacter = LocalPlayer.CharacterAdded:Connect(function(newCharacter)
+    Character = newCharacter
+end)
+
+local Window = redzlib:MakeWindow({
+    Title = "🌌 Tetra4 | Hub Completo",
+    SubTitle = "✨ Melhor experiência mobile",
+    SaveFolder = ""
+})
+
+Window:AddMinimizeButton({
+    Button = {
+        Image = redzlib:GetIcon("rbxassetid://108943939907781"),
+        Size = UDim2.fromOffset(60, 60),
+        BackgroundTransparency = 0
+    },
+    Corner = { CornerRadius = UDim.new(0, 6) }
+})
+
+-- 🎮 Player
+local TabPlayer = Window:MakeTab({"🚶 Player", "rbxassetid://4483362458"})
+
+-- 🕹️ MOVIMENTAÇÃO
+TabPlayer:AddSection({"🕹️ Movimentação"})
+
+TabPlayer:AddToggle({
+    Name = "💨 Super Velocidade",
+    Flag = "SuperVelocidade",
+    Callback = function(value)
+        getgenv().activeSpeed = value
+        if not value then
+            Character:WaitForChild("Humanoid").WalkSpeed = 16
+        end
+        while getgenv().activeSpeed do
+            if getgenv().valueSpeed then
+                Character:WaitForChild("Humanoid").WalkSpeed = getgenv().valueSpeed
+            end
+            task.wait()
+        end
+    end
+})
+
+TabPlayer:AddSlider({
+    Name = "⚡ Definir Velocidade",
+    Min = 0,
+    Max = 100,
+    Default = 16,
+    Callback = function(valor)
+        getgenv().valueSpeed = valor
+    end
+})
+
+-- 🦘 PULO
+TabPlayer:AddSection({"🦘 Pulo"})
+
+TabPlayer:AddToggle({
+    Name = "🚀 Pulo Super Alto",
+    Flag = "PuloSuper",
+    Callback = function(value)
+        getgenv().activeJumpPower = value
+        if not value then
+            Character:WaitForChild("Humanoid").JumpPower = 50
+        end
+        while getgenv().activeJumpPower do
+            if getgenv().valueJumpPower then
+                Character:WaitForChild("Humanoid").JumpPower = getgenv().valueJumpPower
+            end
+            task.wait()
+        end
+    end
+})
+
+TabPlayer:AddSlider({
+    Name = "📏 Ajustar Altura do Pulo",
+    Min = 0,
+    Max = 250,
+    Default = 50,
+    Callback = function(valor)
+        getgenv().valueJumpPower = valor
+    end
+})
+
+-- 👻 FÍSICA
+TabPlayer:AddSection({"👻 Física"})
+
+local noclipAtivo = false
+TabPlayer:AddToggle({
+    Name = "🛸 Noclip (Fantasma)",
+    Callback = function(v)
+        noclipAtivo = v
+        if v then
+            task.spawn(function()
+                while noclipAtivo do
+                    for _, part in ipairs(Character:GetDescendants()) do
+                        if part:IsA("BasePart") then
+                            part.CanCollide = false
+                        end
+                    end
+                    task.wait(0.1)
+                end
+            end)
+        else
+            for _, part in ipairs(Character:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    part.CanCollide = true
+                end
+            end
+        end
+    end
+})
+
+-- 🔧 UTILITÁRIOS
+TabPlayer:AddSection({"🔧 Utilitários"})
+
+TabPlayer:AddButton({"🔄 Reentrar no Servidor", function()
+    game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, LocalPlayer)
+end})
+
+-- 🎨 Avatar
+local TabAvatar = Window:MakeTab({"🎨 Avatar", "rbxassetid://4483362458"})
+
+-- 👤 CÓPIA DE AVATAR
+TabAvatar:AddSection({"👤 Copiar Avatar"})
+
+local avatarTarget = ""
+local DropdownAvatar = TabAvatar:AddDropdown({
+    Name = "👤 Selecionar Jogador",
+    Options = {},
+    Callback = function(nome)
+        avatarTarget = nome
+    end
+})
+
+local function AtualizarListaAvatar()
+    local lista = {}
+    for _, p in ipairs(Players:GetPlayers()) do
+        if p ~= LocalPlayer then
+            table.insert(lista, p.Name)
+        end
+    end
+    DropdownAvatar:Set(lista)
+end
+
+AtualizarListaAvatar()
+
+TabAvatar:AddButton({"🔄 Atualizar Lista", AtualizarListaAvatar})
+
+TabAvatar:AddButton({
+    Name = "📋 Copiar Avatar",
+    Callback = function()
+        if not avatarTarget or avatarTarget == "" then
+            redzlib:Notify("❌ Erro", "Selecione um jogador primeiro!", 3)
+            return
+        end
+        
+        local TPlayer = Players:FindFirstChild(avatarTarget)
+        if not TPlayer or not TPlayer.Character then
+            redzlib:Notify("❌ Erro", "Jogador não encontrado!", 3)
+            return
+        end
+
+        local LChar = Character
+        local LHumanoid = LChar:FindFirstChildOfClass("Humanoid")
+        local THumanoid = TPlayer.Character:FindFirstChildOfClass("Humanoid")
+
+        if not LHumanoid or not THumanoid then
+            redzlib:Notify("❌ Erro", "Humanoid não encontrado!", 3)
+            return
+        end
+
+        -- REINICIAR AVATAR LOCAL
+        local LDesc = LHumanoid:GetAppliedDescription()
+
+        -- Remover acessórios
+        for _, acc in ipairs(LDesc:GetAccessories(true)) do
+            if acc.AssetId and tonumber(acc.AssetId) then
+                Remotes.Wear:InvokeServer(tonumber(acc.AssetId))
+                task.wait(0.2)
+            end
+        end
+
+        -- Remover roupas e rosto
+        local itemsToRemove = {
+            LDesc.Shirt,
+            LDesc.Pants,
+            LDesc.Face
+        }
+
+        for _, item in ipairs(itemsToRemove) do
+            if tonumber(item) then
+                Remotes.Wear:InvokeServer(tonumber(item))
+                task.wait(0.2)
+            end
+        end
+
+        -- COPIAR DO ALVO
+        local PDesc = THumanoid:GetAppliedDescription()
+
+        -- Copiar partes do corpo
+        if Remotes:FindFirstChild("ChangeCharacterBody") then
+            local argsBody = {
+                [1] = {
+                    [1] = PDesc.Torso,
+                    [2] = PDesc.RightArm,
+                    [3] = PDesc.LeftArm,
+                    [4] = PDesc.RightLeg,
+                    [5] = PDesc.LeftLeg,
+                    [6] = PDesc.Head
+                }
+            }
+            Remotes.ChangeCharacterBody:InvokeServer(unpack(argsBody))
+            task.wait(0.5)
+        end
+
+        -- Copiar roupas e rosto
+        local itemsToCopy = {
+            PDesc.Shirt,
+            PDesc.Pants,
+            PDesc.Face
+        }
+
+        for _, item in ipairs(itemsToCopy) do
+            if tonumber(item) then
+                Remotes.Wear:InvokeServer(tonumber(item))
+                task.wait(0.3)
+            end
+        end
+
+        -- Copiar acessórios
+        for _, v in ipairs(PDesc:GetAccessories(true)) do
+            if v.AssetId and tonumber(v.AssetId) then
+                Remotes.Wear:InvokeServer(tonumber(v.AssetId))
+                task.wait(0.3)
+            end
+        end
+
+        -- Copiar cor da pele
+        local SkinColor = TPlayer.Character:FindFirstChild("Body Colors")
+        if SkinColor and Remotes:FindFirstChild("ChangeBodyColor") then
+            Remotes.ChangeBodyColor:FireServer(tostring(SkinColor.HeadColor))
+            task.wait(0.3)
+        end
+
+        -- Copiar animação ociosa
+        if tonumber(PDesc.IdleAnimation) and Remotes:FindFirstChild("Wear") then
+            Remotes.Wear:InvokeServer(tonumber(PDesc.IdleAnimation))
+            task.wait(0.3)
+        end
+
+        redzlib:Notify("✅ Sucesso", "Avatar copiado de "..avatarTarget, 5)
+    end
+})
+
+-- 🌈 EFEITOS VISUAIS
+TabAvatar:AddSection({"🌈 Efeitos Visuais"})
+
+-- Configurações de cor
+local cores = {"Really red", "Lime green", "Bright blue", "New Yeller", "Royal purple", "Deep orange", "Medium stone grey", "Hot pink", "Earth green"}
+local loopCorpo = false
+
+TabAvatar:AddToggle({
+    Name = "🌈 Loop Cor do Corpo",
+    Callback = function(state)
+        loopCorpo = state
+        if state then
+            task.spawn(function()
+                while loopCorpo do
+                    for _, cor in ipairs(cores) do
+                        if not loopCorpo then break end
+                        if game:GetService("ReplicatedStorage").Remotes:FindFirstChild("ChangeBodyColor") then
+                            game:GetService("ReplicatedStorage").Remotes.ChangeBodyColor:FireServer(cor)
+                        end
+                        task.wait(0.3)
+                    end
+                end
+            end)
+        end
+    end
+})
+
+local loopNome = false
+TabAvatar:AddToggle({
+    Name = "💡 Nome RGB Animado",
+    Callback = function(state)
+        loopNome = state
+        if state then
+            task.spawn(function()
+                while loopNome do
+                    if game:GetService("ReplicatedStorage").RE:FindFirstChild("1RPNam1eColo1r") then
+                        game:GetService("ReplicatedStorage").RE["1RPNam1eColo1r"]:FireServer("PickingRPNameColor", Color3.fromHSV((tick() % 5)/5,1,1))
+                    end
+                    task.wait(0.1)
+                end
+            end)
+        end
+    end
+})
+
+-- Bio Colorida
+TabAvatar:AddToggle({
+    Name = "📝 Bio Colorida",
+    Callback = function(state)
+        if state then
+            task.spawn(function()
+                while task.wait(0.2) and state do
+                    local args = {
+                        [1] = "PickingRPBioColor",
+                        [2] = Color3.fromHSV((tick() % 5) / 5, 1, 1)
+                    }
+                    if game:GetService("ReplicatedStorage").RE:FindFirstChild("1RPNam1eColo1r") then
+                        game:GetService("ReplicatedStorage").RE["1RPNam1eColo1r"]:FireServer(unpack(args))
+                    end
+                end
+            end)
+        end
+    end
+})
+
+-- 🃏 Troll
+local TabTroll = Window:MakeTab({"🃏 Troll", "rbxassetid://4483362458"})
+
+-- 🎯 SELEÇÃO DE ALVO
+TabTroll:AddSection({"🎯 Seleção de Alvo"})
+
+local playerSelecionado = ""
+local DropdownPlayers = TabTroll:AddDropdown({
+    Name = "🎯 Escolher Jogador-Alvo",
+    Options = {},
+    Callback = function(nome)
+        playerSelecionado = nome
+    end
+})
+
+local function AtualizarPlayers()
+    local lista = {}
+    for _, p in ipairs(Players:GetPlayers()) do
+        if p ~= LocalPlayer then
+            table.insert(lista, p.Name)
+        end
+    end
+    DropdownPlayers:Set(lista)
+end
+
+AtualizarPlayers()
+
+TabTroll:AddButton({"🔃 Atualizar Lista de Players", AtualizarPlayers})
+
+-- 😈 AÇÕES DE TROLL
+TabTroll:AddSection({"😈 Ações de Troll"})
+
+TabTroll:AddButton({"📌 Teleportar para Alvo", function()
+    local alvo = Players:FindFirstChild(playerSelecionado)
+    if alvo and alvo.Character and alvo.Character:FindFirstChild("HumanoidRootPart") then
+        LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = alvo.Character.HumanoidRootPart.CFrame + Vector3.new(0,2,0)
+        redzlib:Notify("✅ Teleportado", "Você foi até "..playerSelecionado, 5)
+    end
+end})
+
+local viewAlvo = false
+TabTroll:AddToggle({
+    Name = "👁️ View Jogador",
+    Callback = function(v)
+        viewAlvo = v
+        local cam = workspace.CurrentCamera
+        task.spawn(function()
+            while viewAlvo do
+                local alvo = Players:FindFirstChild(playerSelecionado)
+                if alvo and alvo.Character and alvo.Character:FindFirstChild("Humanoid") then
+                    cam.CameraSubject = alvo.Character.Humanoid
+                end
+                task.wait()
+            end
+            cam.CameraSubject = LocalPlayer.Character:WaitForChild("Humanoid")
+        end)
+    end
+})
+
+-- 🏠 Casas
+local TabCasas = Window:MakeTab({"🏠 Casas", "rbxassetid://4483362458"})
+
+-- 🛡️ UTILITÁRIOS
+TabCasas:AddSection({"🛡️ Utilitários"})
+
+local antBanAtivo = false
+TabCasas:AddToggle({
+    Name = "🚫 Auto AntBan (BannedBlock)",
+    Callback = function(state)
+        antBanAtivo = state
+        if state then
+            task.spawn(function()
+                while antBanAtivo do
+                    for _, v in ipairs(workspace:GetDescendants()) do
+                        if v:IsA("BasePart") and v.Name == "BannedBlock" then
+                            v:Destroy()
+                        end
+                    end
+                    task.wait(0.5)
+                end
+            end)
+        end
+    end
+})
+
+-- 🚗 Carros
+local TabCarros = Window:MakeTab({"🚗 Carros", "rbxassetid://4483362458"})
+-- (Sem funções definidas nesta aba)
+
+-- 👓 Chams (ESPs)
+local TabChams = Window:MakeTab({"👓 Chams (ESPs)", "rbxassetid://4483362458"})
+
+-- 👁️ VISUALIZAÇÃO
+TabChams:AddSection({"👁️ Visualização"})
+
+local RunService = game:GetService("RunService")
+local Camera = workspace.CurrentCamera
+
+local Highlights = {}
+local Tracers = {}
+local Boxes = {}
+local NameTags = {}
+
+local espPlayersActive = false
+local espTracersActive = false
+local espBoxesActive = false
+
+local function ClearESP()
+    for _, hl in pairs(Highlights) do
+        hl:Destroy()
+    end
+    Highlights = {}
+
+    for _, line in pairs(Tracers) do
+        line:Remove()
+    end
+    Tracers = {}
+
+    for _, box in pairs(Boxes) do
+        box:Remove()
+    end
+    Boxes = {}
+
+    for _, nametag in pairs(NameTags) do
+        if nametag and nametag.Parent then
+            nametag:Destroy()
+        end
+    end
+    NameTags = {}
+end
+
+local function CreateBox()
+    local box = Drawing.new("Square")
+    box.Color = Color3.new(0, 1, 0)
+    box.Thickness = 2
+    box.Filled = false
+    box.Transparency = 1
+    return box
+end
+
+local function CreateTracer()
+    local line = Drawing.new("Line")
+    line.Color = Color3.new(0, 1, 0)
+    line.Thickness = 1.5
+    line.Transparency = 1
+    return line
+end
+
+local function CreateNameTag(player)
+    local billboard = Instance.new("BillboardGui")
+    billboard.Name = "Tetra4NameESP"
+    billboard.Adornee = player.Character:FindFirstChild("Head") or player.Character:FindFirstChild("HumanoidRootPart")
+    billboard.Size = UDim2.new(0, 100, 0, 30)
+    billboard.StudsOffset = Vector3.new(0, 2.5, 0)
+    billboard.AlwaysOnTop = true
+    billboard.Parent = player.Character
+
+    local textLabel = Instance.new("TextLabel")
+    textLabel.BackgroundTransparency = 1
+    textLabel.Size = UDim2.new(1, 0, 1, 0)
+    textLabel.Text = player.Name
+    textLabel.TextColor3 = Color3.fromRGB(0, 162, 255)
+    textLabel.TextStrokeTransparency = 0
+    textLabel.TextScaled = true
+    textLabel.Font = Enum.Font.SourceSansBold
+    textLabel.Parent = billboard
+
+    return billboard
+end
+
+RunService.RenderStepped:Connect(function()
+    if not (espPlayersActive or espTracersActive or espBoxesActive) then
+        ClearESP()
+        return
+    end
+
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health > 0 then
+            local rootPart = player.Character.HumanoidRootPart
+            local pos, onScreen = Camera:WorldToViewportPoint(rootPart.Position)
+
+            if espPlayersActive then
+                if not Highlights[player] then
+                    local highlight = Instance.new("Highlight")
+                    highlight.Adornee = player.Character
+                    highlight.FillColor = Color3.fromRGB(0, 162, 255)
+                    highlight.OutlineColor = Color3.fromRGB(0, 162, 255)
+                    highlight.Parent = workspace
+                    Highlights[player] = highlight
+                end
+                if not NameTags[player] then
+                    NameTags[player] = CreateNameTag(player)
+                end
+            else
+                if Highlights[player] then
+                    Highlights[player]:Destroy()
+                    Highlights[player] = nil
+                end
+                if NameTags[player] then
+                    NameTags[player]:Destroy()
+                    NameTags[player] = nil
+                end
+            end
+
+            if espTracersActive and onScreen then
+                if not Tracers[player] then
+                    Tracers[player] = CreateTracer()
+                end
+                local screenSize = Camera.ViewportSize
+                Tracers[player].From = Vector2.new(screenSize.X / 2, screenSize.Y)
+                Tracers[player].To = Vector2.new(pos.X, pos.Y)
+                Tracers[player].Visible = true
+            else
+                if Tracers[player] then
+                    Tracers[player].Visible = false
+                    Tracers[player]:Remove()
+                    Tracers[player] = nil
+                end
+            end
+
+            if espBoxesActive and onScreen then
+                local size = Vector3.new(2, 5, 1)
+                local corners = {
+                    rootPart.Position + Vector3.new(-size.X/2, size.Y/2, -size.Z/2),
+                    rootPart.Position + Vector3.new(size.X/2, size.Y/2, -size.Z/2),
+                    rootPart.Position + Vector3.new(size.X/2, -size.Y/2, -size.Z/2),
+                    rootPart.Position + Vector3.new(-size.X/2, -size.Y/2, -size.Z/2),
+                }
+                if not Boxes[player] then
+                    Boxes[player] = CreateBox()
+                end
+                local topLeft, visibleTL = Camera:WorldToViewportPoint(corners[1])
+                local bottomRight, visibleBR = Camera:WorldToViewportPoint(corners[3])
+                if visibleTL and visibleBR then
+                    local box = Boxes[player]
+                    local width = (bottomRight.X - topLeft.X)
+                    local height = (bottomRight.Y - topLeft.Y)
+                    box.Position = Vector2.new(topLeft.X, topLeft.Y)
+                    box.Size = Vector2.new(width, height)
+                    box.Visible = true
+                else
+                    if Boxes[player] then
+                        Boxes[player].Visible = false
+                    end
+                end
+            else
+                if Boxes[player] then
+                    Boxes[player].Visible = false
+                    Boxes[player]:Remove()
+                    Boxes[player] = nil
+                end
+            end
+        else
+            if Highlights[player] then
+                Highlights[player]:Destroy()
+                Highlights[player] = nil
+            end
+            if Tracers[player] then
+                Tracers[player]:Remove()
+                Tracers[player] = nil
+            end
+            if Boxes[player] then
+                Boxes[player]:Remove()
+                Boxes[player] = nil
+            end
+            if NameTags[player] then
+                NameTags[player]:Destroy()
+                NameTags[player] = nil
+            end
+        end
+    end
+end)
+
+-- 🟢 ESP TYPES
+TabChams:AddSection({"🟢 Tipos de ESP"})
+
+TabChams:AddToggle({
+    Name = "🟢 ESP Players",
+    Callback = function(state)
+        espPlayersActive = state
+        if not state then ClearESP() end
+    end
+})
+
+TabChams:AddToggle({
+    Name = "🔵 ESP Tracers",
+    Callback = function(state)
+        espTracersActive = state
+        if not state then ClearESP() end
+    end
+})
+
+TabChams:AddToggle({
+    Name = "🟠 ESP Box",
+    Callback = function(state)
+        espBoxesActive = state
+        if not state then ClearESP() end
+    end
+})
