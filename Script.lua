@@ -11,14 +11,14 @@ shared.connectCharacter = LocalPlayer.CharacterAdded:Connect(function(newCharact
 end)
 
 local Window = redzlib:MakeWindow({
-    Title = "🌌 Tetra4 | Hub Completo",
+    Title = "🐶Dog Hub | BrookHaven",
     SubTitle = "✨ Melhor experiência mobile",
     SaveFolder = ""
 })
 
 Window:AddMinimizeButton({
     Button = {
-        Image = redzlib:GetIcon("rbxassetid://108943939907781"),
+        Image = redzlib:GetIcon("rbxassetid://78494550405765"),
         Size = UDim2.fromOffset(60, 60),
         BackgroundTransparency = 0
     },
